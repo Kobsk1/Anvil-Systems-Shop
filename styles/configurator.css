@@ -130,9 +130,11 @@
     border: 2px solid rgba(255, 69, 0, 0.2);
     border-radius: 8px;
     padding: 1.5rem;
+    padding-top: 3rem;
     cursor: pointer;
     transition: all 0.3s;
     position: relative;
+    min-height: 200px;
 }
 
 .component-option:hover {
@@ -150,14 +152,17 @@
 .component-option.recommended::before {
     content: 'RECOMMENDED';
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 0.5rem;
+    right: 0.5rem;
     background: var(--color-lava);
     color: white;
     padding: 0.3rem 0.6rem;
     border-radius: 4px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
 }
 
 .option-name {
@@ -165,6 +170,7 @@
     font-weight: 700;
     margin-bottom: 0.5rem;
     color: var(--color-light);
+    padding-right: 100px;
 }
 
 .option-specs {
@@ -179,6 +185,7 @@
     font-weight: 700;
     color: var(--color-lava);
     font-family: var(--font-heading);
+    margin-top: 1rem;
 }
 
 .step-navigation {

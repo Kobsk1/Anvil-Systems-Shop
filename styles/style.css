@@ -387,6 +387,66 @@ h1, h2, h3, h4 {
     color: #aaa;
 }
 
+/* ===== CATEGORIES ===== */
+.categories {
+    padding: var(--spacing-xl) 2rem;
+    background-color: var(--color-darker);
+}
+
+.categories-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.category-card {
+    background: var(--color-gray);
+    border-radius: 8px;
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 69, 0, 0.1);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-lava);
+    box-shadow: 0 15px 30px rgba(255, 69, 0, 0.2);
+}
+
+.category-icon {
+    font-size: 4rem;
+    color: var(--color-lava);
+    margin-bottom: 1.5rem;
+}
+
+.category-name {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-light);
+}
+
+.category-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-lava);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.category-desc {
+    color: #aaa;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
 /* ===== BUILDS ===== */
 .builds {
     padding: var(--spacing-xl) 2rem;
@@ -900,6 +960,10 @@ h1, h2, h3, h4 {
         grid-template-columns: 1fr;
     }
     
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+    
     .hero-buttons, .cta-buttons {
         flex-direction: column;
         align-items: center;
@@ -1330,7 +1394,7 @@ h1, h2, h3, h4 {
 .component-card {
     background: var(--color-gray);
     border-radius: 8px;
-    overflow: hidden;
+    overflow: visible;
     border: 1px solid rgba(255, 69, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
@@ -1344,18 +1408,20 @@ h1, h2, h3, h4 {
 
 .anvil-badge {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 0.5rem;
+    right: 0.5rem;
     background: var(--color-lava);
     color: white;
-    padding: 0.3rem 0.8rem;
+    padding: 0.3rem 0.6rem;
     border-radius: 4px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
     z-index: 10;
     display: flex;
     align-items: center;
     gap: 0.3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
 }
 
 .component-image {
@@ -1368,6 +1434,7 @@ h1, h2, h3, h4 {
 
 .component-info {
     padding: 1.5rem;
+    padding-top: 1rem;
 }
 
 .component-brand {
@@ -1384,6 +1451,7 @@ h1, h2, h3, h4 {
     margin-bottom: 1rem;
     color: var(--color-light);
     line-height: 1.3;
+    padding-right: 80px;
 }
 
 .component-specs {

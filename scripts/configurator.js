@@ -4,25 +4,21 @@ let selectedComponents = {};
 let componentsData = null;
 let systemsData = null;
 const steps = [
-    { id: 'base', name: 'Base System', category: null },
     { id: 'cpu', name: 'CPU', category: 'cpu' },
     { id: 'gpu', name: 'GPU', category: 'gpu' },
     { id: 'ram', name: 'RAM', category: 'ram' },
     { id: 'storage', name: 'Storage', category: 'storage' },
     { id: 'cooling', name: 'Cooling', category: 'cooling' },
     { id: 'case', name: 'Case', category: 'case' },
-    { id: 'psu', name: 'Power Supply', category: 'psu' }
+    { id: 'psu', name: 'Power Supply', category: 'psu' },
+    { id: 'motherboard', name: 'Motherboard', category: 'motherboard' }
 ];
 
 // Load data
 async function loadData() {
     try {
-        const [componentsRes, systemsRes] = await Promise.all([
-            fetch('scripts/data/components.json'),
-            fetch('scripts/data/systems.json')
-        ]);
+        const componentsRes = await fetch('scripts/data/components.json');
         componentsData = await componentsRes.json();
-        systemsData = await systemsRes.json();
         
         // Check for saved build or URL parameters
         loadBuildFromURL();
@@ -44,69 +40,9 @@ function renderStep() {
     
     updateProgress();
     updateNavigation();
-    
-    if (step.id === 'base') {
-        renderBaseStep(stepContent);
-    } else {
-        renderComponentStep(stepContent, step);
-    }
+    renderComponentStep(stepContent, step);
 }
 
-// Render base system selection step
-function renderBaseStep(container) {
-    container.innerHTML = `
-        <h2 class="step-title">Choose Your Starting Point</h2>
-        <p class="step-description">Start with a pre-built system or build from scratch</p>
-        <div class="component-options">
-            <div class="component-option" data-base="scratch">
-                <div class="option-name">Start from Scratch</div>
-                <div class="option-specs">Build your PC completely custom from individual components</div>
-                <div class="option-price">$0</div>
-            </div>
-            ${systemsData.systems.map(system => `
-                <div class="component-option" data-base="${system.id}">
-                    <div class="option-name">${system.name}</div>
-                    <div class="option-specs">${system.description}</div>
-                    <div class="option-price">$${system.basePrice.toLocaleString()}</div>
-                </div>
-            `).join('')}
-        </div>
-    `;
-    
-    // Add event listeners
-    container.querySelectorAll('.component-option').forEach(option => {
-        option.addEventListener('click', () => {
-            container.querySelectorAll('.component-option').forEach(opt => opt.classList.remove('selected'));
-            option.classList.add('selected');
-            
-            const baseId = option.dataset.base;
-            if (baseId === 'scratch') {
-                selectedComponents = {};
-            } else {
-                const system = systemsData.systems.find(s => s.id === baseId);
-                if (system) {
-                    selectedComponents = {
-                        cpu: system.specs.cpu,
-                        gpu: system.specs.gpu,
-                        ram: system.specs.ram,
-                        storage: system.specs.storage,
-                        cooling: system.specs.cooling,
-                        case: system.specs.case,
-                        psu: system.specs.psu,
-                        motherboard: system.specs.motherboard
-                    };
-                }
-            }
-            updateSummary();
-        });
-    });
-    
-    // Mark selected if exists
-    if (selectedComponents.base) {
-        const selected = container.querySelector(`[data-base="${selectedComponents.base}"]`);
-        if (selected) selected.classList.add('selected');
-    }
-}
 
 // Render component selection step
 function renderComponentStep(container, step) {
@@ -160,6 +96,10 @@ function formatComponentSpecs(component) {
     if (specs.speed) text.push(specs.speed);
     if (specs.wattage) text.push(`${specs.wattage}W`);
     if (specs.type) text.push(specs.type);
+    if (specs.chipset) text.push(specs.chipset);
+    if (specs.socket) text.push(specs.socket);
+    if (specs.ramType) text.push(specs.ramType);
+    if (specs.formFactor) text.push(specs.formFactor);
     
     return text.join(' • ') || 'See details';
 }
@@ -211,6 +151,7 @@ function previousStep() {
     }
 }
 
+
 // Update summary panel
 function updateSummary() {
     const summaryItems = document.getElementById('summary-items');
@@ -220,7 +161,6 @@ function updateSummary() {
     let hasItems = false;
     
     Object.entries(selectedComponents).forEach(([category, component]) => {
-        if (category === 'base') return;
         if (component && component.name) {
             hasItems = true;
             html += `

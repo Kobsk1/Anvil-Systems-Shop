@@ -9,12 +9,41 @@ async function loadSystems() {
         const data = await response.json();
         allSystems = data.systems;
         filteredSystems = [...allSystems];
+        
+        // Check for category filter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
+        if (category) {
+            applyCategoryFilter(category);
+        }
+        
         renderSystems();
         updateResultsCount();
     } catch (error) {
         console.error('Error loading systems:', error);
         document.getElementById('systems-grid').innerHTML = 
             '<p style="color: #ff4500; text-align: center; padding: 2rem;">Error loading systems. Please refresh the page.</p>';
+    }
+}
+
+// Apply category filter
+function applyCategoryFilter(category) {
+    categoryFilter = category;
+    const categoryMap = {
+        'gaming': ['gaming'],
+        'workstation': ['creator', 'work'],
+        'mini': ['mini']
+    };
+    
+    const useCases = categoryMap[category];
+    if (useCases) {
+        // Update filter checkboxes
+        document.querySelectorAll('input[name="useCase"]').forEach(cb => {
+            cb.checked = useCases.includes(cb.value);
+        });
+        
+        // Apply filters to update the view
+        applyFilters();
     }
 }
 
@@ -80,6 +109,7 @@ function applyFilters() {
     const selectedUseCases = Array.from(useCaseCheckboxes).map(cb => cb.value);
     const performanceTier = document.getElementById('performance-tier').value;
     
+    // Start with all systems (category filter is applied separately in loadSystems)
     filteredSystems = allSystems.filter(system => {
         // Price filter
         if (system.basePrice < priceMin || system.basePrice > priceMax) {
@@ -149,6 +179,7 @@ function clearFilters() {
     document.getElementById('price-max').value = 5000;
     document.querySelectorAll('input[name="useCase"]').forEach(cb => cb.checked = true);
     document.getElementById('performance-tier').value = '';
+    categoryFilter = null;
     updatePriceDisplay();
     applyFilters();
 }
