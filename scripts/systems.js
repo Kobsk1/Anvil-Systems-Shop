@@ -1,6 +1,7 @@
 // Systems Page - Filtering and Sorting
 let allSystems = [];
 let filteredSystems = [];
+let categoryFilter = null;
 
 // Load systems data
 async function loadSystems() {
@@ -32,7 +33,8 @@ function applyCategoryFilter(category) {
     const categoryMap = {
         'gaming': ['gaming'],
         'workstation': ['creator', 'work'],
-        'mini': ['mini']
+        'mini': ['mini'],
+        'limited-edition': ['limited-edition']
     };
     
     const useCases = categoryMap[category];
@@ -50,14 +52,21 @@ function applyCategoryFilter(category) {
 // Render systems grid
 function renderSystems() {
     const grid = document.getElementById('systems-grid');
+    const noResults = document.getElementById('no-results');
+    
+    if (!grid) return;
     
     if (filteredSystems.length === 0) {
-        document.getElementById('no-results').style.display = 'block';
+        if (noResults) {
+            noResults.style.display = 'block';
+        }
         grid.innerHTML = '';
         return;
     }
     
-    document.getElementById('no-results').style.display = 'none';
+    if (noResults) {
+        noResults.style.display = 'none';
+    }
     
     grid.innerHTML = filteredSystems.map(system => `
         <div class="build-card">
@@ -88,11 +97,17 @@ function renderSystems() {
 
 // Apply filters
 function applyFilters() {
-    const priceMin = parseInt(document.getElementById('price-min').value);
-    const priceMax = parseInt(document.getElementById('price-max').value);
+    const priceMinEl = document.getElementById('price-min');
+    const priceMaxEl = document.getElementById('price-max');
+    const performanceTierEl = document.getElementById('performance-tier');
+    
+    if (!priceMinEl || !priceMaxEl || !performanceTierEl) return;
+    
+    const priceMin = parseInt(priceMinEl.value || 0);
+    const priceMax = parseInt(priceMaxEl.value || 5000);
     const useCaseCheckboxes = document.querySelectorAll('input[name="useCase"]:checked');
     const selectedUseCases = Array.from(useCaseCheckboxes).map(cb => cb.value);
-    const performanceTier = document.getElementById('performance-tier').value;
+    const performanceTier = performanceTierEl.value;
     
     // Start with all systems (category filter is applied separately in loadSystems)
     filteredSystems = allSystems.filter(system => {
@@ -125,7 +140,10 @@ function applyFilters() {
 
 // Apply sorting
 function applySort() {
-    const sortValue = document.getElementById('sort-select').value;
+    const sortSelect = document.getElementById('sort-select');
+    if (!sortSelect) return;
+    
+    const sortValue = sortSelect.value;
     
     filteredSystems.sort((a, b) => {
         switch (sortValue) {
@@ -147,23 +165,35 @@ function applySort() {
 function updateResultsCount() {
     const count = filteredSystems.length;
     const countElement = document.getElementById('results-count');
-    countElement.textContent = `${count} system${count !== 1 ? 's' : ''} found`;
+    if (countElement) {
+        countElement.textContent = `${count} system${count !== 1 ? 's' : ''} found`;
+    }
 }
 
 // Update price display
 function updatePriceDisplay() {
-    const priceMin = document.getElementById('price-min').value;
-    const priceMax = document.getElementById('price-max').value;
-    document.getElementById('price-min-display').textContent = parseInt(priceMin).toLocaleString();
-    document.getElementById('price-max-display').textContent = parseInt(priceMax).toLocaleString();
+    const priceMin = document.getElementById('price-min');
+    const priceMax = document.getElementById('price-max');
+    const priceMinDisplay = document.getElementById('price-min-display');
+    const priceMaxDisplay = document.getElementById('price-max-display');
+    
+    if (priceMin && priceMax && priceMinDisplay && priceMaxDisplay) {
+        priceMinDisplay.textContent = parseInt(priceMin.value || 0).toLocaleString();
+        priceMaxDisplay.textContent = parseInt(priceMax.value || 5000).toLocaleString();
+    }
 }
 
 // Clear all filters
 function clearFilters() {
-    document.getElementById('price-min').value = 0;
-    document.getElementById('price-max').value = 5000;
+    const priceMin = document.getElementById('price-min');
+    const priceMax = document.getElementById('price-max');
+    const performanceTier = document.getElementById('performance-tier');
+    
+    if (priceMin) priceMin.value = 0;
+    if (priceMax) priceMax.value = 5000;
+    if (performanceTier) performanceTier.value = '';
+    
     document.querySelectorAll('input[name="useCase"]').forEach(cb => cb.checked = true);
-    document.getElementById('performance-tier').value = '';
     categoryFilter = null;
     updatePriceDisplay();
     applyFilters();
@@ -174,30 +204,45 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSystems();
     
     // Filter event listeners
-    document.getElementById('price-min').addEventListener('input', () => {
-        updatePriceDisplay();
-        applyFilters();
-    });
+    const priceMin = document.getElementById('price-min');
+    if (priceMin) {
+        priceMin.addEventListener('input', () => {
+            updatePriceDisplay();
+            applyFilters();
+        });
+    }
     
-    document.getElementById('price-max').addEventListener('input', () => {
-        updatePriceDisplay();
-        applyFilters();
-    });
+    const priceMax = document.getElementById('price-max');
+    if (priceMax) {
+        priceMax.addEventListener('input', () => {
+            updatePriceDisplay();
+            applyFilters();
+        });
+    }
     
     document.querySelectorAll('input[name="useCase"]').forEach(cb => {
         cb.addEventListener('change', applyFilters);
     });
     
-    document.getElementById('performance-tier').addEventListener('change', applyFilters);
+    const performanceTier = document.getElementById('performance-tier');
+    if (performanceTier) {
+        performanceTier.addEventListener('change', applyFilters);
+    }
     
     // Sort event listener
-    document.getElementById('sort-select').addEventListener('change', () => {
-        applySort();
-        renderSystems();
-    });
+    const sortSelect = document.getElementById('sort-select');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', () => {
+            applySort();
+            renderSystems();
+        });
+    }
     
     // Clear filters button
-    document.getElementById('clear-filters').addEventListener('click', clearFilters);
+    const clearFiltersBtn = document.getElementById('clear-filters');
+    if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', clearFilters);
+    }
     
     // Initialize price display
     updatePriceDisplay();

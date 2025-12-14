@@ -5,6 +5,12 @@ let paymentData = {};
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    if (typeof getCart !== 'function') {
+        console.error('Cart functions not loaded');
+        alert('Error: Cart functionality not available. Please refresh the page.');
+        return;
+    }
+    
     const cart = getCart();
     
     if (cart.items.length === 0) {
@@ -15,16 +21,34 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCheckoutItems();
     updateCheckoutSummary();
     setupFormValidation();
+    updateCheckoutSteps();
     
-    document.getElementById('next-step-btn').addEventListener('click', nextStep);
-    document.getElementById('prev-step-btn').addEventListener('click', previousStep);
-    document.getElementById('place-order-btn').addEventListener('click', placeOrder);
+    const nextBtn = document.getElementById('next-step-btn');
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextStep);
+    }
+    
+    const prevBtn = document.getElementById('prev-step-btn');
+    if (prevBtn) {
+        prevBtn.addEventListener('click', previousStep);
+    }
+    
+    const placeOrderBtn = document.getElementById('place-order-btn');
+    if (placeOrderBtn) {
+        placeOrderBtn.addEventListener('click', placeOrder);
+    }
 });
 
 // Render checkout items
 function renderCheckoutItems() {
+    if (typeof getCart !== 'function') {
+        console.error('Cart functions not loaded');
+        return;
+    }
+    
     const cart = getCart();
     const container = document.getElementById('checkout-items');
+    if (!container) return;
     
     container.innerHTML = cart.items.map(item => `
         <div class="checkout-item">
@@ -39,11 +63,21 @@ function renderCheckoutItems() {
 
 // Update checkout summary
 function updateCheckoutSummary() {
+    if (typeof getCart !== 'function') {
+        console.error('Cart functions not loaded');
+        return;
+    }
+    
     const cart = getCart();
-    document.getElementById('checkout-subtotal').textContent = `$${cart.subtotal.toLocaleString()}`;
-    document.getElementById('checkout-tax').textContent = `$${cart.tax.toLocaleString()}`;
-    document.getElementById('checkout-shipping').textContent = cart.shipping > 0 ? `$${cart.shipping.toLocaleString()}` : 'FREE';
-    document.getElementById('checkout-total').textContent = `$${cart.total.toLocaleString()}`;
+    const subtotalEl = document.getElementById('checkout-subtotal');
+    const taxEl = document.getElementById('checkout-tax');
+    const shippingEl = document.getElementById('checkout-shipping');
+    const totalEl = document.getElementById('checkout-total');
+    
+    if (subtotalEl) subtotalEl.textContent = `$${cart.subtotal.toLocaleString()}`;
+    if (taxEl) taxEl.textContent = `$${cart.tax.toLocaleString()}`;
+    if (shippingEl) shippingEl.textContent = cart.shipping > 0 ? `$${cart.shipping.toLocaleString()}` : 'FREE';
+    if (totalEl) totalEl.textContent = `$${cart.total.toLocaleString()}`;
 }
 
 // Setup form validation
@@ -75,6 +109,14 @@ function setupFormValidation() {
     if (cvvInput) {
         cvvInput.addEventListener('input', (e) => {
             e.target.value = e.target.value.replace(/\D/g, '');
+        });
+    }
+    
+    // ZIP code formatting
+    const zipInput = document.querySelector('input[name="zip"]');
+    if (zipInput) {
+        zipInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 5);
         });
     }
 }
@@ -127,14 +169,26 @@ function updateCheckoutSteps() {
     });
     
     // Update navigation buttons
-    document.getElementById('prev-step-btn').style.display = currentCheckoutStep > 1 ? 'flex' : 'none';
-    document.getElementById('next-step-btn').style.display = currentCheckoutStep < 3 ? 'flex' : 'none';
-    document.getElementById('place-order-btn').style.display = currentCheckoutStep === 3 ? 'flex' : 'none';
+    const prevBtn = document.getElementById('prev-step-btn');
+    const nextBtn = document.getElementById('next-step-btn');
+    const placeOrderBtn = document.getElementById('place-order-btn');
+    
+    if (prevBtn) {
+        prevBtn.style.display = currentCheckoutStep > 1 ? 'flex' : 'none';
+    }
+    if (nextBtn) {
+        nextBtn.style.display = currentCheckoutStep < 3 ? 'flex' : 'none';
+    }
+    if (placeOrderBtn) {
+        placeOrderBtn.style.display = currentCheckoutStep === 3 ? 'flex' : 'none';
+    }
 }
 
 // Validate shipping form
 function validateShippingForm() {
     const form = document.getElementById('shipping-form');
+    if (!form) return false;
+    
     if (!form.checkValidity()) {
         form.reportValidity();
         return false;
@@ -148,6 +202,8 @@ function validateShippingForm() {
 // Validate payment form
 function validatePaymentForm() {
     const form = document.getElementById('payment-form');
+    if (!form) return false;
+    
     if (!form.checkValidity()) {
         form.reportValidity();
         return false;
@@ -157,7 +213,7 @@ function validatePaymentForm() {
     paymentData = Object.fromEntries(formData);
     
     // Basic card number validation (demo)
-    const cardNumber = paymentData.cardNumber.replace(/\s/g, '');
+    const cardNumber = (paymentData.cardNumber || '').replace(/\s/g, '');
     if (cardNumber.length < 13 || cardNumber.length > 19) {
         alert('Please enter a valid card number');
         return false;
@@ -168,8 +224,14 @@ function validatePaymentForm() {
 
 // Render review step
 function renderReview() {
+    if (typeof getCart !== 'function') {
+        console.error('Cart functions not loaded');
+        return;
+    }
+    
     const cart = getCart();
     const container = document.getElementById('review-content');
+    if (!container) return;
     
     container.innerHTML = `
         <div class="review-section">
@@ -208,7 +270,19 @@ function renderReview() {
 
 // Place order
 function placeOrder() {
+    if (typeof getCart !== 'function' || typeof clearCart !== 'function') {
+        console.error('Cart functions not loaded');
+        alert('Error: Cart functionality not available. Please refresh the page.');
+        return;
+    }
+    
     const cart = getCart();
+    
+    if (cart.items.length === 0) {
+        alert('Your cart is empty!');
+        window.location.href = 'cart.html';
+        return;
+    }
     
     // Create order
     const order = {
@@ -217,7 +291,7 @@ function placeOrder() {
         shipping: shippingData,
         payment: {
             method: 'card',
-            last4: paymentData.cardNumber.slice(-4)
+            last4: (paymentData.cardNumber || '').slice(-4)
         },
         totals: {
             subtotal: cart.subtotal,

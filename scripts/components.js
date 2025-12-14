@@ -35,10 +35,16 @@ function updateFilteredComponents() {
     }
     
     // Apply filters
-    const priceMin = parseInt(document.getElementById('comp-price-min').value);
-    const priceMax = parseInt(document.getElementById('comp-price-max').value);
-    const selectedBrands = Array.from(document.querySelectorAll('#brand-filters input:checked')).map(cb => cb.value);
-    const anvilCertifiedOnly = document.getElementById('anvil-certified-only').checked;
+    const priceMinEl = document.getElementById('comp-price-min');
+    const priceMaxEl = document.getElementById('comp-price-max');
+    const anvilCertifiedEl = document.getElementById('anvil-certified-only');
+    
+    if (!priceMinEl || !priceMaxEl || !anvilCertifiedEl) return;
+    
+    const priceMin = parseInt(priceMinEl.value || 0);
+    const priceMax = parseInt(priceMaxEl.value || 2000);
+    const selectedBrands = Array.from(document.querySelectorAll('#brand-filters input[name="comp-brand"]:checked')).map(cb => cb.value);
+    const anvilCertifiedOnly = anvilCertifiedEl.checked;
     
     filteredComponents = components.filter(component => {
         // Price filter
@@ -65,7 +71,10 @@ function updateFilteredComponents() {
 
 // Apply sorting
 function applySort() {
-    const sortValue = document.getElementById('comp-sort-select').value;
+    const sortSelect = document.getElementById('comp-sort-select');
+    if (!sortSelect) return;
+    
+    const sortValue = sortSelect.value;
     
     filteredComponents.sort((a, b) => {
         switch (sortValue) {
@@ -85,14 +94,21 @@ function applySort() {
 // Render components grid
 function renderComponents() {
     const grid = document.getElementById('components-grid');
+    const noResults = document.getElementById('comp-no-results');
+    
+    if (!grid) return;
     
     if (filteredComponents.length === 0) {
-        document.getElementById('comp-no-results').style.display = 'block';
+        if (noResults) {
+            noResults.style.display = 'block';
+        }
         grid.innerHTML = '';
         return;
     }
     
-    document.getElementById('comp-no-results').style.display = 'none';
+    if (noResults) {
+        noResults.style.display = 'none';
+    }
     
     grid.innerHTML = filteredComponents.map(component => {
         const specs = formatSpecs(component);
@@ -100,10 +116,7 @@ function renderComponents() {
             <div class="component-card">
                 ${component.anvilCertified ? '<span class="anvil-badge"><i class="fas fa-certificate"></i> Anvil Certified</span>' : ''}
                 <div class="component-image">
-                    <div class="placeholder-content">
-                        <i class="fas fa-${getCategoryIcon(component)}" style="font-size: 3rem; color: #ff4500; opacity: 0.3;"></i>
-                        <p style="color: #666; font-size: 0.8rem; margin-top: 1rem;">[Component Image]</p>
-                    </div>
+                    ${component.image ? `<img src="${component.image}" alt="${component.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'placeholder-content\\'><i class=\\'fas fa-${getCategoryIcon(component)}\\' style=\\'font-size: 3rem; color: #ff4500; opacity: 0.3;\\'></i><p style=\\'color: #666; font-size: 0.8rem; margin-top: 1rem;\\'>[Component Image]</p></div>';">` : `<div class="placeholder-content"><i class="fas fa-${getCategoryIcon(component)}" style="font-size: 3rem; color: #ff4500; opacity: 0.3;"></i><p style="color: #666; font-size: 0.8rem; margin-top: 1rem;">[Component Image]</p></div>`}
                 </div>
                 <div class="component-info">
                     <div class="component-brand">${component.brand}</div>
@@ -189,9 +202,11 @@ function populateBrandFilters() {
     });
     
     const brandFilters = document.getElementById('brand-filters');
+    if (!brandFilters) return;
+    
     brandFilters.innerHTML = Array.from(brands).sort().map(brand => `
         <label class="checkbox-label">
-            <input type="checkbox" name="brand" value="${brand}" checked>
+            <input type="checkbox" name="comp-brand" value="${brand}" checked>
             <span>${brand}</span>
         </label>
     `).join('');
@@ -222,11 +237,19 @@ function addComponentToCart(componentId, category) {
         category: category
     };
     
-    if (typeof addToCart === 'function') {
+    if (typeof window.addToCart === 'function') {
+        window.addToCart(cartItem);
+    } else if (typeof addToCart === 'function') {
         addToCart(cartItem);
-        
-        // Show feedback
-        const btn = document.querySelector(`[data-component-id="${componentId}"]`);
+    } else {
+        console.error('Cart functions not loaded');
+        alert('Error: Cart functionality not available. Please refresh the page.');
+        return;
+    }
+    
+    // Show feedback
+    const btn = document.querySelector(`[data-component-id="${componentId}"]`);
+    if (btn) {
         const originalText = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-check"></i> Added!';
         btn.style.background = '#4caf50';
@@ -245,23 +268,36 @@ function addComponentToCart(componentId, category) {
 // Update results count
 function updateResultsCount() {
     const count = filteredComponents.length;
-    document.getElementById('comp-results-count').textContent = `${count} component${count !== 1 ? 's' : ''} found`;
+    const countElement = document.getElementById('comp-results-count');
+    if (countElement) {
+        countElement.textContent = `${count} component${count !== 1 ? 's' : ''} found`;
+    }
 }
 
 // Update price display
 function updatePriceDisplay() {
-    const priceMin = document.getElementById('comp-price-min').value;
-    const priceMax = document.getElementById('comp-price-max').value;
-    document.getElementById('comp-price-min-display').textContent = parseInt(priceMin).toLocaleString();
-    document.getElementById('comp-price-max-display').textContent = parseInt(priceMax).toLocaleString();
+    const priceMin = document.getElementById('comp-price-min');
+    const priceMax = document.getElementById('comp-price-max');
+    const priceMinDisplay = document.getElementById('comp-price-min-display');
+    const priceMaxDisplay = document.getElementById('comp-price-max-display');
+    
+    if (priceMin && priceMax && priceMinDisplay && priceMaxDisplay) {
+        priceMinDisplay.textContent = parseInt(priceMin.value || 0).toLocaleString();
+        priceMaxDisplay.textContent = parseInt(priceMax.value || 2000).toLocaleString();
+    }
 }
 
 // Clear filters
 function clearFilters() {
-    document.getElementById('comp-price-min').value = 0;
-    document.getElementById('comp-price-max').value = 2000;
-    document.querySelectorAll('#brand-filters input').forEach(cb => cb.checked = true);
-    document.getElementById('anvil-certified-only').checked = false;
+    const priceMin = document.getElementById('comp-price-min');
+    const priceMax = document.getElementById('comp-price-max');
+    const anvilCertified = document.getElementById('anvil-certified-only');
+    
+    if (priceMin) priceMin.value = 0;
+    if (priceMax) priceMax.value = 2000;
+    if (anvilCertified) anvilCertified.checked = false;
+    
+    document.querySelectorAll('#brand-filters input[name="comp-brand"]').forEach(cb => cb.checked = true);
     updatePriceDisplay();
     updateFilteredComponents();
     renderComponents();
@@ -285,35 +321,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Price filters
-    document.getElementById('comp-price-min').addEventListener('input', () => {
-        updatePriceDisplay();
-        updateFilteredComponents();
-        renderComponents();
-        updateResultsCount();
-    });
+    const priceMin = document.getElementById('comp-price-min');
+    if (priceMin) {
+        priceMin.addEventListener('input', () => {
+            updatePriceDisplay();
+            updateFilteredComponents();
+            renderComponents();
+            updateResultsCount();
+        });
+    }
     
-    document.getElementById('comp-price-max').addEventListener('input', () => {
-        updatePriceDisplay();
-        updateFilteredComponents();
-        renderComponents();
-        updateResultsCount();
-    });
+    const priceMax = document.getElementById('comp-price-max');
+    if (priceMax) {
+        priceMax.addEventListener('input', () => {
+            updatePriceDisplay();
+            updateFilteredComponents();
+            renderComponents();
+            updateResultsCount();
+        });
+    }
     
     // Anvil Certified filter
-    document.getElementById('anvil-certified-only').addEventListener('change', () => {
-        updateFilteredComponents();
-        renderComponents();
-        updateResultsCount();
-    });
+    const anvilCertified = document.getElementById('anvil-certified-only');
+    if (anvilCertified) {
+        anvilCertified.addEventListener('change', () => {
+            updateFilteredComponents();
+            renderComponents();
+            updateResultsCount();
+        });
+    }
     
     // Sort
-    document.getElementById('comp-sort-select').addEventListener('change', () => {
-        applySort();
-        renderComponents();
-    });
+    const sortSelect = document.getElementById('comp-sort-select');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', () => {
+            applySort();
+            renderComponents();
+            updateResultsCount();
+        });
+    }
     
     // Clear filters
-    document.getElementById('clear-comp-filters').addEventListener('click', clearFilters);
+    const clearFiltersBtn = document.getElementById('clear-comp-filters');
+    if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', clearFilters);
+    }
     
     // Initialize price display
     updatePriceDisplay();

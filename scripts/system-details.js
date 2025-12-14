@@ -39,7 +39,7 @@ function renderSystemDetails() {
     document.getElementById('system-tag').textContent = currentSystem.tag;
     
     const heroImage = document.getElementById('system-hero-image');
-    const imagePath = currentSystem.image || `assets/Horizon_Hero_1250x.webp`;
+    const imagePath = currentSystem.image || `assets/systems/Horizon_Hero_1250x.webp`;
     heroImage.innerHTML = `
         <img src="${imagePath}" alt="${currentSystem.name} - ${currentSystem.description}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'placeholder-content\\' style=\\'padding: 4rem; text-align: center;\\'><h2 style=\\'color: #ff4500; font-size: 3rem; margin-bottom: 1rem;\\'>${currentSystem.name}</h2><p style=\\'color: #ccc; font-size: 1.2rem;\\'>${currentSystem.description}</p></div>';">
     `;
@@ -238,19 +238,29 @@ function handleUpgradeChange(e) {
 
 // Update price display
 function updatePrice() {
-    const upgradesTotal = Object.values(selectedUpgrades).reduce((sum, upgrade) => sum + upgrade.cost, 0);
+    const upgradesTotal = Object.values(selectedUpgrades).reduce((sum, upgrade) => sum + (upgrade.cost || 0), 0);
     const totalPrice = (basePrice + upgradesTotal) * quantity;
     
-    document.getElementById('base-price').textContent = `$${basePrice.toLocaleString()}`;
-    
-    if (upgradesTotal > 0) {
-        document.getElementById('upgrades-row').style.display = 'flex';
-        document.getElementById('upgrades-price').textContent = `+$${upgradesTotal.toLocaleString()}`;
-    } else {
-        document.getElementById('upgrades-row').style.display = 'none';
+    const basePriceEl = document.getElementById('base-price');
+    if (basePriceEl) {
+        basePriceEl.textContent = `$${basePrice.toLocaleString()}`;
     }
     
-    document.getElementById('total-price').textContent = `$${totalPrice.toLocaleString()}`;
+    const upgradesRow = document.getElementById('upgrades-row');
+    const upgradesPrice = document.getElementById('upgrades-price');
+    if (upgradesRow && upgradesPrice) {
+        if (upgradesTotal > 0) {
+            upgradesRow.style.display = 'flex';
+            upgradesPrice.textContent = `+$${upgradesTotal.toLocaleString()}`;
+        } else {
+            upgradesRow.style.display = 'none';
+        }
+    }
+    
+    const totalPriceEl = document.getElementById('total-price');
+    if (totalPriceEl) {
+        totalPriceEl.textContent = `$${totalPrice.toLocaleString()}`;
+    }
 }
 
 // Check compatibility (basic implementation)
@@ -313,7 +323,7 @@ async function loadRelatedSystems() {
         related.forEach(system => {
             const img = document.getElementById(`related-${system.id}`);
             if (img) {
-                const imagePath = system.image || `assets/Horizon_Hero_1250x.webp`;
+                const imagePath = system.image || `assets/systems/Horizon_Hero_1250x.webp`;
                 img.innerHTML = `
                     <img src="${imagePath}" alt="${system.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'placeholder-content\\'><h3 style=\\'color: #ff4500;\\'>${system.name}</h3></div><div class=\\'build-overlay\\'><span class=\\'build-tag\\'>${system.tag}</span></div>';">
                     <div class="build-overlay">
@@ -327,12 +337,12 @@ async function loadRelatedSystems() {
     }
 }
 
-// Add to cart
-function addToCart() {
+// Add system to cart
+function addSystemToCart() {
     if (!currentSystem) return;
     
-    const upgradesTotal = Object.values(selectedUpgrades).reduce((sum, upgrade) => sum + upgrade.cost, 0);
-    const totalPrice = basePrice + upgradesTotal;
+    const upgradesTotal = Object.values(selectedUpgrades).reduce((sum, upgrade) => sum + (upgrade.cost || 0), 0);
+    const totalPrice = (basePrice + upgradesTotal) * quantity;
     
     const cartItem = {
         id: currentSystem.id,
@@ -346,10 +356,14 @@ function addToCart() {
     };
     
     // Use the addToCart function from cart.js
-    if (typeof addToCart === 'function') {
+    if (typeof window.addToCart === 'function') {
+        window.addToCart(cartItem);
+    } else if (typeof addToCart === 'function') {
         addToCart(cartItem);
     } else {
         console.error('Cart functions not loaded');
+        alert('Error: Cart functionality not available. Please refresh the page.');
+        return;
     }
     
     // Show success message
@@ -395,29 +409,45 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSystemDetails();
     
     // Quantity controls
-    document.getElementById('quantity-decrease').addEventListener('click', () => {
-        if (quantity > 1) {
-            quantity--;
-            document.getElementById('quantity-input').value = quantity;
-            updatePrice();
-        }
-    });
+    const quantityDecrease = document.getElementById('quantity-decrease');
+    const quantityIncrease = document.getElementById('quantity-increase');
+    const quantityInput = document.getElementById('quantity-input');
     
-    document.getElementById('quantity-increase').addEventListener('click', () => {
-        if (quantity < 10) {
-            quantity++;
-            document.getElementById('quantity-input').value = quantity;
-            updatePrice();
-        }
-    });
+    if (quantityDecrease) {
+        quantityDecrease.addEventListener('click', () => {
+            if (quantity > 1) {
+                quantity--;
+                if (quantityInput) quantityInput.value = quantity;
+                updatePrice();
+            }
+        });
+    }
     
-    document.getElementById('quantity-input').addEventListener('change', (e) => {
-        quantity = Math.max(1, Math.min(10, parseInt(e.target.value) || 1));
-        e.target.value = quantity;
-        updatePrice();
-    });
+    if (quantityIncrease) {
+        quantityIncrease.addEventListener('click', () => {
+            if (quantity < 10) {
+                quantity++;
+                if (quantityInput) quantityInput.value = quantity;
+                updatePrice();
+            }
+        });
+    }
+    
+    if (quantityInput) {
+        quantityInput.addEventListener('change', (e) => {
+            quantity = Math.max(1, Math.min(10, parseInt(e.target.value) || 1));
+            e.target.value = quantity;
+            updatePrice();
+        });
+    }
     
     // Action buttons
-    document.getElementById('add-to-cart').addEventListener('click', addToCart);
-    document.getElementById('share-build').addEventListener('click', shareBuild);
+    const addToCartBtn = document.getElementById('add-to-cart');
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', addSystemToCart);
+    }
+    const shareBuildBtn = document.getElementById('share-build');
+    if (shareBuildBtn) {
+        shareBuildBtn.addEventListener('click', shareBuild);
+    }
 });

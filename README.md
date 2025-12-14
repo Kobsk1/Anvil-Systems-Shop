@@ -11,4 +11,4 @@ This project is **not intended for commercial use**, redistribution, or profit.
 
 ## Image Attribution
 
-Some product images used in this prototype were sourced from StarForge Systems and are used strictly for educational demonstration purposes. All rights to these images remain with their respective owners.
+Some product images used in this prototype were sourced from StarForge Systems and pc part picker and are used strictly for educational demonstration purposes. All rights to these images remain with their respective owners.

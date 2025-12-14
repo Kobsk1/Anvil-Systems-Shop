@@ -40,6 +40,7 @@
         "name": "AMD Ryzen 5 5600",
         "brand": "AMD",
         "price": 149,
+        "image": "assets/components/Ryzen5-5600.jpg",
         "specs": {
           "cores": 6,
           "threads": 12,
@@ -59,6 +60,7 @@
         "name": "AMD Ryzen 5 7600",
         "brand": "AMD",
         "price": 229,
+        "image": "assets/components/ryzen5-7600.jpg",
         "specs": {
           "cores": 6,
           "threads": 12,
@@ -78,6 +80,7 @@
         "name": "AMD Ryzen 7 7700X",
         "brand": "AMD",
         "price": 329,
+        "image": "assets/components/ryzen7-7700.jpg",
         "specs": {
           "cores": 8,
           "threads": 16,
@@ -97,6 +100,7 @@
         "name": "AMD Ryzen 7 7800X3D",
         "brand": "AMD",
         "price": 449,
+        "image": "assets/components/ryzen7-7800x3d.jpg",
         "specs": {
           "cores": 8,
           "threads": 16,
@@ -116,6 +120,7 @@
         "name": "AMD Ryzen 9 7900X3D",
         "brand": "AMD",
         "price": 599,
+        "image": "assets/components/ryzen9-7900x3d.jpg",
         "specs": {
           "cores": 12,
           "threads": 24,
@@ -135,6 +140,7 @@
         "name": "AMD Ryzen 9 7950X",
         "brand": "AMD",
         "price": 699,
+        "image": "assets/components/ryzen9-7950x.jpg",
         "specs": {
           "cores": 16,
           "threads": 32,
@@ -154,6 +160,7 @@
         "name": "Intel Core i5-13600K",
         "brand": "Intel",
         "price": 319,
+        "image": "assets/components/i5-13600k.jpg",
         "specs": {
           "cores": 14,
           "threads": 20,
@@ -173,6 +180,7 @@
         "name": "Intel Core i7-13700K",
         "brand": "Intel",
         "price": 419,
+        "image": "assets/components/i7-13700k.jpg",
         "specs": {
           "cores": 16,
           "threads": 24,
@@ -192,6 +200,7 @@
         "name": "Intel Core i9-14900K",
         "brand": "Intel",
         "price": 589,
+        "image": "assets/components/i9-14900k.jpg",
         "specs": {
           "cores": 24,
           "threads": 32,
@@ -213,6 +222,7 @@
         "name": "NVIDIA RTX 4060",
         "brand": "NVIDIA",
         "price": 299,
+        "image": "assets/components/rtx4060.jpg",
         "specs": {
           "vram": "8GB GDDR6",
           "boostClock": "2460MHz",
@@ -230,6 +240,7 @@
         "name": "NVIDIA RTX 4060 Ti",
         "brand": "NVIDIA",
         "price": 399,
+        "image": "assets/components/rtx4060ti.jpg",
         "specs": {
           "vram": "16GB GDDR6",
           "boostClock": "2535MHz",
@@ -247,6 +258,7 @@
         "name": "NVIDIA RTX 4070",
         "brand": "NVIDIA",
         "price": 599,
+        "image": "assets/components/rtx4070.jpg",
         "specs": {
           "vram": "12GB GDDR6X",
           "boostClock": "2475MHz",
@@ -264,6 +276,7 @@
         "name": "NVIDIA RTX 4070 Ti SUPER",
         "brand": "NVIDIA",
         "price": 799,
+        "image": "assets/components/rtx4070ti-super.jpg",
         "specs": {
           "vram": "16GB GDDR6X",
           "boostClock": "2610MHz",
@@ -281,6 +294,7 @@
         "name": "NVIDIA RTX 4080 SUPER",
         "brand": "NVIDIA",
         "price": 999,
+        "image": "assets/components/rtx4080-super.jpg",
         "specs": {
           "vram": "16GB GDDR6X",
           "boostClock": "2550MHz",
@@ -298,11 +312,138 @@
         "name": "NVIDIA RTX 4090",
         "brand": "NVIDIA",
         "price": 1599,
+        "image": "assets/components/rtx 4090.jpg",
         "specs": {
           "vram": "24GB GDDR6X",
           "boostClock": "2520MHz",
           "powerDraw": "450W",
           "length": "304mm"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "psuMin": 1000,
+          "slotWidth": 3
+        }
+      },
+      {
+        "id": "rtx5050",
+        "name": "NVIDIA RTX 5050",
+        "brand": "NVIDIA",
+        "price": 249,
+        "image": null,
+        "specs": {
+          "vram": "8GB GDDR7",
+          "boostClock": "2700MHz",
+          "powerDraw": "110W",
+          "length": "235mm"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "psuMin": 450,
+          "slotWidth": 2
+        }
+      },
+      {
+        "id": "rtx5060",
+        "name": "NVIDIA RTX 5060",
+        "brand": "NVIDIA",
+        "price": 329,
+        "image": null,
+        "specs": {
+          "vram": "12GB GDDR7",
+          "boostClock": "2750MHz",
+          "powerDraw": "130W",
+          "length": "240mm"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "psuMin": 500,
+          "slotWidth": 2
+        }
+      },
+      {
+        "id": "rtx5060ti",
+        "name": "NVIDIA RTX 5060 Ti",
+        "brand": "NVIDIA",
+        "price": 449,
+        "image": null,
+        "specs": {
+          "vram": "16GB GDDR7",
+          "boostClock": "2800MHz",
+          "powerDraw": "160W",
+          "length": "245mm"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "psuMin": 550,
+          "slotWidth": 2
+        }
+      },
+      {
+        "id": "rtx5070",
+        "name": "NVIDIA RTX 5070",
+        "brand": "NVIDIA",
+        "price": 649,
+        "image": null,
+        "specs": {
+          "vram": "16GB GDDR7",
+          "boostClock": "2850MHz",
+          "powerDraw": "190W",
+          "length": "250mm"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "psuMin": 650,
+          "slotWidth": 2
+        }
+      },
+      {
+        "id": "rtx5070ti",
+        "name": "NVIDIA RTX 5070 Ti",
+        "brand": "NVIDIA",
+        "price": 849,
+        "image": null,
+        "specs": {
+          "vram": "20GB GDDR7",
+          "boostClock": "2900MHz",
+          "powerDraw": "270W",
+          "length": "300mm"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "psuMin": 750,
+          "slotWidth": 3
+        }
+      },
+      {
+        "id": "rtx5080",
+        "name": "NVIDIA RTX 5080",
+        "brand": "NVIDIA",
+        "price": 1199,
+        "image": null,
+        "specs": {
+          "vram": "24GB GDDR7",
+          "boostClock": "2950MHz",
+          "powerDraw": "320W",
+          "length": "310mm"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "psuMin": 850,
+          "slotWidth": 3
+        }
+      },
+      {
+        "id": "rtx5090",
+        "name": "NVIDIA RTX 5090",
+        "brand": "NVIDIA",
+        "price": 1999,
+        "image": null,
+        "specs": {
+          "vram": "32GB GDDR7",
+          "boostClock": "3000MHz",
+          "powerDraw": "475W",
+          "length": "320mm"
         },
         "anvilCertified": true,
         "compatibility": {
@@ -317,6 +458,7 @@
         "name": "16GB DDR4 3200MHz",
         "brand": "Corsair",
         "price": 60,
+        "image": "assets/components/ddr4-16gb-3200.jpg",
         "specs": {
           "capacity": "16GB",
           "speed": "3200MHz",
@@ -335,6 +477,7 @@
         "name": "32GB DDR4 3200MHz",
         "brand": "Corsair",
         "price": 110,
+        "image": "assets/components/ddr4-32gb-3200.jpg",
         "specs": {
           "capacity": "32GB",
           "speed": "3200MHz",
@@ -353,6 +496,7 @@
         "name": "16GB DDR5 5600MHz",
         "brand": "Corsair",
         "price": 80,
+        "image": "assets/components/ddr5-16gb-5600.jpg",
         "specs": {
           "capacity": "16GB",
           "speed": "5600MHz",
@@ -371,6 +515,7 @@
         "name": "32GB DDR5 6000MHz",
         "brand": "Corsair",
         "price": 150,
+        "image": "assets/components/ddr5-32gb-6000.jpg",
         "specs": {
           "capacity": "32GB",
           "speed": "6000MHz",
@@ -389,6 +534,7 @@
         "name": "64GB DDR5 6000MHz",
         "brand": "Corsair",
         "price": 300,
+        "image": "assets/components/ddr5-64gb-6000.jpg",
         "specs": {
           "capacity": "64GB",
           "speed": "6000MHz",
@@ -407,6 +553,7 @@
         "name": "64GB DDR5 6400MHz",
         "brand": "Corsair",
         "price": 350,
+        "image": "assets/components/ddr5-64gb-6400.jpg",
         "specs": {
           "capacity": "64GB",
           "speed": "6400MHz",
@@ -427,6 +574,7 @@
         "name": "1TB NVMe Gen3 SSD",
         "brand": "Samsung",
         "price": 70,
+        "image": "assets/components/nvme-1tb-gen3.jpg",
         "specs": {
           "capacity": "1TB",
           "type": "NVMe",
@@ -446,6 +594,7 @@
         "name": "1TB NVMe Gen4 SSD",
         "brand": "Samsung",
         "price": 100,
+        "image": "assets/components/nvme-1tb-gen4.jpg",
         "specs": {
           "capacity": "1TB",
           "type": "NVMe",
@@ -465,6 +614,7 @@
         "name": "2TB NVMe Gen4 SSD",
         "brand": "Samsung",
         "price": 200,
+        "image": "assets/components/nvme-2tb-gen4.jpg",
         "specs": {
           "capacity": "2TB",
           "type": "NVMe",
@@ -484,6 +634,7 @@
         "name": "4TB NVMe Gen4 SSD",
         "brand": "Samsung",
         "price": 400,
+        "image": "assets/components/nvme-4tb-gen4.jpg",
         "specs": {
           "capacity": "4TB",
           "type": "NVMe",
@@ -503,6 +654,7 @@
         "name": "2TB SATA SSD",
         "brand": "Samsung",
         "price": 150,
+        "image": "assets/components/sata-2tb-ssd.jpg",
         "specs": {
           "capacity": "2TB",
           "type": "SATA",
@@ -524,6 +676,7 @@
         "name": "Basic Air Cooler",
         "brand": "Cooler Master",
         "price": 30,
+        "image": "assets/components/air-cooler-basic.jpg",
         "specs": {
           "type": "Air",
           "towerHeight": "120mm",
@@ -541,6 +694,7 @@
         "name": "Tower Air Cooler",
         "brand": "Noctua",
         "price": 50,
+        "image": "assets/components/air-cooler-tower.jpg",
         "specs": {
           "type": "Air",
           "towerHeight": "165mm",
@@ -558,6 +712,7 @@
         "name": "240mm AIO Liquid Cooler",
         "brand": "Corsair",
         "price": 120,
+        "image": "assets/components/aio-240mm.jpg",
         "specs": {
           "type": "AIO",
           "radiatorSize": "240mm",
@@ -575,6 +730,7 @@
         "name": "280mm AIO Liquid Cooler",
         "brand": "Corsair",
         "price": 150,
+        "image": "assets/components/aio-280mm.jpg",
         "specs": {
           "type": "AIO",
           "radiatorSize": "280mm",
@@ -592,6 +748,7 @@
         "name": "360mm AIO Liquid Cooler",
         "brand": "Corsair",
         "price": 180,
+        "image": "assets/components/aio-360mm.jpg",
         "specs": {
           "type": "AIO",
           "radiatorSize": "360mm",
@@ -611,6 +768,7 @@
         "name": "Mid-Tower Budget Case",
         "brand": "Fractal Design",
         "price": 60,
+        "image": "assets/components/mid-tower-budget.jpg",
         "specs": {
           "formFactor": "Mid-Tower",
           "motherboardSupport": ["mATX", "ATX"],
@@ -630,6 +788,7 @@
         "name": "Mid-Tower Case",
         "brand": "Fractal Design",
         "price": 80,
+        "image": "assets/components/mid-tower-basic.jpg",
         "specs": {
           "formFactor": "Mid-Tower",
           "motherboardSupport": ["mATX", "ATX"],
@@ -649,6 +808,7 @@
         "name": "Mid-Tower RGB Case",
         "brand": "Lian Li",
         "price": 150,
+        "image": "assets/components/mid-tower-rgb.jpg",
         "specs": {
           "formFactor": "Mid-Tower",
           "motherboardSupport": ["mATX", "ATX"],
@@ -668,6 +828,7 @@
         "name": "Mid-Tower Premium Case",
         "brand": "Lian Li",
         "price": 200,
+        "image": "assets/components/mid-tower-premium.jpg",
         "specs": {
           "formFactor": "Mid-Tower",
           "motherboardSupport": ["mATX", "ATX"],
@@ -687,6 +848,7 @@
         "name": "Full-Tower Premium Case",
         "brand": "Corsair",
         "price": 250,
+        "image": "assets/components/full-tower-premium.jpg",
         "specs": {
           "formFactor": "Full-Tower",
           "motherboardSupport": ["mATX", "ATX", "EATX"],
@@ -708,6 +870,7 @@
         "name": "600W 80+ Bronze PSU",
         "brand": "Corsair",
         "price": 60,
+        "image": "assets/components/psu-600w-bronze.jpg",
         "specs": {
           "wattage": 600,
           "efficiency": "80+ Bronze",
@@ -724,6 +887,7 @@
         "name": "650W 80+ Bronze PSU",
         "brand": "Corsair",
         "price": 70,
+        "image": "assets/components/psu-650w-bronze.jpg",
         "specs": {
           "wattage": 650,
           "efficiency": "80+ Bronze",
@@ -740,6 +904,7 @@
         "name": "850W 80+ Gold PSU",
         "brand": "Corsair",
         "price": 130,
+        "image": "assets/components/psu-850w-gold.jpg",
         "specs": {
           "wattage": 850,
           "efficiency": "80+ Gold",
@@ -756,6 +921,7 @@
         "name": "1000W 80+ Gold PSU",
         "brand": "Corsair",
         "price": 180,
+        "image": "assets/components/psu-1000w-gold.jpg",
         "specs": {
           "wattage": 1000,
           "efficiency": "80+ Gold",
@@ -772,6 +938,7 @@
         "name": "1200W 80+ Platinum PSU",
         "brand": "Corsair",
         "price": 250,
+        "image": "assets/components/psu-1200w-platinum.jpg",
         "specs": {
           "wattage": 1200,
           "efficiency": "80+ Platinum",
@@ -790,6 +957,7 @@
         "name": "B550 Basic Motherboard",
         "brand": "ASUS",
         "price": 120,
+        "image": "assets/components/b550-basic.jpg",
         "specs": {
           "chipset": "B550",
           "socket": "AM4",
@@ -811,6 +979,7 @@
         "name": "B650 Basic Motherboard",
         "brand": "ASUS",
         "price": 180,
+        "image": "assets/components/b650-basic.jpg",
         "specs": {
           "chipset": "B650",
           "socket": "AM5",
@@ -832,6 +1001,7 @@
         "name": "B650 AM5 Motherboard",
         "brand": "ASUS",
         "price": 201,
+        "image": "assets/components/b650-am5.jpg",
         "specs": {
           "chipset": "B650",
           "socket": "AM5",
@@ -853,6 +1023,7 @@
         "name": "X670 Premium Motherboard",
         "brand": "ASUS",
         "price": 271,
+        "image": "assets/components/x670-premium.jpg",
         "specs": {
           "chipset": "X670",
           "socket": "AM5",
@@ -874,6 +1045,7 @@
         "name": "B760 Basic Motherboard",
         "brand": "ASUS",
         "price": 160,
+        "image": "assets/components/b760-basic.jpg",
         "specs": {
           "chipset": "B760",
           "socket": "LGA1700",
@@ -895,6 +1067,7 @@
         "name": "Z790 Premium Motherboard",
         "brand": "ASUS",
         "price": 381,
+        "image": "assets/components/z790-premium.jpg",
         "specs": {
           "chipset": "Z790",
           "socket": "LGA1700",

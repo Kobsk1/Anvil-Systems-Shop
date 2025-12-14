@@ -16,7 +16,7 @@ function renderCart() {
     document.getElementById('checkout-btn').style.display = 'block';
     
     cartItemsContainer.innerHTML = cart.items.map((item, index) => {
-        const imagePath = item.image || (item.type === 'system' ? `assets/Horizon_Hero_1250x.webp` : null);
+        const imagePath = item.image || (item.type === 'system' ? `assets/systems/Horizon_Hero_1250x.webp` : null);
         const imageHtml = imagePath 
             ? `<img src="${imagePath}" alt="${item.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'placeholder-content\\' style=\\'padding: 1rem; text-align: center;\\'><i class=\\'fas fa-${item.type === 'system' ? 'desktop' : 'microchip'}\\' style=\\'font-size: 2rem; color: #ff4500; opacity: 0.3;\\'></i></div>';">`
             : `<div class="placeholder-content" style="padding: 1rem; text-align: center;"><i class="fas fa-${item.type === 'system' ? 'desktop' : 'microchip'}" style="font-size: 2rem; color: #ff4500; opacity: 0.3;"></i></div>`;

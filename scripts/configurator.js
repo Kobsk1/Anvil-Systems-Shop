@@ -38,6 +38,8 @@ function renderStep() {
     const step = steps[currentStep];
     const stepContent = document.getElementById('step-content');
     
+    if (!stepContent || !step) return;
+    
     updateProgress();
     updateNavigation();
     renderComponentStep(stepContent, step);
@@ -106,8 +108,11 @@ function formatComponentSpecs(component) {
 
 // Update progress indicator
 function updateProgress() {
-    const progress = ((currentStep + 1) / steps.length) * 100;
-    document.getElementById('progress-fill').style.width = `${progress}%`;
+    const progressFill = document.getElementById('progress-fill');
+    if (progressFill) {
+        const progress = ((currentStep + 1) / steps.length) * 100;
+        progressFill.style.width = `${progress}%`;
+    }
     
     document.querySelectorAll('.progress-step').forEach((step, index) => {
         step.classList.remove('active', 'completed');
@@ -124,14 +129,31 @@ function updateNavigation() {
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     
-    prevBtn.style.display = currentStep > 0 ? 'flex' : 'none';
+    if (prevBtn) {
+        prevBtn.style.display = currentStep > 0 ? 'flex' : 'none';
+    }
     
-    if (currentStep === steps.length - 1) {
-        nextBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
-        nextBtn.onclick = addBuildToCart;
-    } else {
-        nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
-        nextBtn.onclick = nextStep;
+    if (nextBtn) {
+        // Remove existing event listeners by cloning and replacing
+        const newNextBtn = nextBtn.cloneNode(true);
+        nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+        
+        // Update button content and add new listener
+        if (currentStep === steps.length - 1) {
+            newNextBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+            newNextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                addBuildToCart();
+            });
+        } else {
+            newNextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+            newNextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                nextStep();
+            });
+        }
     }
 }
 
@@ -155,6 +177,9 @@ function previousStep() {
 // Update summary panel
 function updateSummary() {
     const summaryItems = document.getElementById('summary-items');
+    const buildTotalPrice = document.getElementById('build-total-price');
+    if (!summaryItems || !buildTotalPrice) return;
+    
     const totalPrice = calculateTotalPrice();
     
     let html = '';
@@ -177,7 +202,7 @@ function updateSummary() {
     }
     
     summaryItems.innerHTML = html;
-    document.getElementById('build-total-price').textContent = `$${totalPrice.toLocaleString()}`;
+    buildTotalPrice.textContent = `$${totalPrice.toLocaleString()}`;
 }
 
 // Calculate total price
@@ -194,6 +219,7 @@ function calculateTotalPrice() {
 function checkCompatibility() {
     const warnings = [];
     const warningsContainer = document.getElementById('config-warnings');
+    if (!warningsContainer) return;
     
     // Basic compatibility checks
     if (selectedComponents.cpu && selectedComponents.motherboard) {
@@ -288,6 +314,15 @@ function loadBuildFromURL() {
 
 // Add build to cart
 function addBuildToCart() {
+    // Check if all required components are selected
+    const requiredCategories = ['cpu', 'gpu', 'ram', 'storage', 'cooling', 'case', 'psu', 'motherboard'];
+    const missingComponents = requiredCategories.filter(cat => !selectedComponents[cat]);
+    
+    if (missingComponents.length > 0) {
+        alert('Please select all required components before adding to cart.');
+        return;
+    }
+    
     const totalPrice = calculateTotalPrice();
     
     const cartItem = {
@@ -300,20 +335,39 @@ function addBuildToCart() {
         customizations: selectedComponents
     };
     
-    if (typeof addToCart === 'function') {
+    if (typeof window.addToCart === 'function') {
+        window.addToCart(cartItem);
+    } else if (typeof addToCart === 'function') {
         addToCart(cartItem);
-        alert('Build added to cart!');
-        if (typeof updateCartBadge === 'function') {
-            updateCartBadge();
-        }
+    } else {
+        console.error('Cart functions not loaded');
+        alert('Error: Cart functionality not available. Please refresh the page.');
+        return;
     }
+    
+    alert('Build added to cart!');
+    if (typeof updateCartBadge === 'function') {
+        updateCartBadge();
+    }
+    
+    // Optionally redirect to cart
+    // window.location.href = 'cart.html';
 }
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     loadData();
     
-    document.getElementById('prev-btn').addEventListener('click', previousStep);
-    document.getElementById('save-build').addEventListener('click', saveBuild);
-    document.getElementById('share-build-link').addEventListener('click', shareBuildLink);
+    // Note: Next/Prev button handlers are set up in updateNavigation()
+    // which is called from renderStep() after data loads
+    
+    const saveBuildBtn = document.getElementById('save-build');
+    if (saveBuildBtn) {
+        saveBuildBtn.addEventListener('click', saveBuild);
+    }
+    
+    const shareBuildLinkBtn = document.getElementById('share-build-link');
+    if (shareBuildLinkBtn) {
+        shareBuildLinkBtn.addEventListener('click', shareBuildLink);
+    }
 });
