@@ -62,6 +62,7 @@ function renderSystems() {
     grid.innerHTML = filteredSystems.map(system => `
         <div class="build-card">
             <div class="build-image" id="build-${system.id}">
+                <img src="${system.image}" alt="${system.name} - ${system.description}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'placeholder-content\\'><h3 style=\\'color: #ff4500;\\'>${system.name}</h3><p style=\\'color: #666;\\'>[Image Placeholder]</p></div><div class=\\'build-overlay\\'><span class=\\'build-tag\\'>${system.tag}</span></div>';">
                 <div class="build-overlay">
                     <span class="build-tag">${system.tag}</span>
                 </div>
@@ -83,22 +84,6 @@ function renderSystems() {
         </div>
     `).join('');
     
-    // Add placeholder images
-    filteredSystems.forEach(system => {
-        const img = document.getElementById(`build-${system.id}`);
-        if (img && !img.querySelector('.placeholder-content')) {
-            img.innerHTML = `
-                <div class="placeholder-content">
-                    <h3 style="color: #ff4500; margin-bottom: 10px;">${system.name}</h3>
-                    <p style="color: #ccc;">${system.description}</p>
-                    <p style="color: #666; font-size: 0.8rem; margin-top: 10px;">[PC Image Placeholder]</p>
-                </div>
-                <div class="build-overlay">
-                    <span class="build-tag">${system.tag}</span>
-                </div>
-            `;
-        }
-    });
 }
 
 // Apply filters

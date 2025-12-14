@@ -9,7 +9,7 @@
       "popularity": 95,
       "performanceTier": "high",
       "useCase": ["gaming"],
-      "image": "valkyrie",
+      "image": "assets/Horizon3_Elite_Hero_1250x.webp",
       "specs": {
         "cpu": {
           "id": "ryzen7-7800x3d",
@@ -102,7 +102,7 @@
       "popularity": 85,
       "performanceTier": "extreme",
       "useCase": ["gaming", "creator", "work"],
-      "image": "titan",
+      "image": "assets/Horizon_Pro_Hero_wEliteComponents_1250x.webp",
       "specs": {
         "cpu": {
           "id": "i9-14900k",
@@ -156,7 +156,7 @@
       "popularity": 90,
       "performanceTier": "mid",
       "useCase": ["gaming"],
-      "image": "ember",
+      "image": "assets/Horizon_Hero_1250x.webp",
       "specs": {
         "cpu": {
           "id": "ryzen5-7600",
@@ -243,7 +243,7 @@
       "popularity": 75,
       "performanceTier": "high",
       "useCase": ["creator", "work"],
-      "image": "phoenix",
+      "image": "assets/VoyPro_Hero_New_1250x.webp",
       "specs": {
         "cpu": {
           "id": "ryzen9-7950x",
@@ -306,7 +306,7 @@
       "popularity": 88,
       "performanceTier": "entry",
       "useCase": ["gaming"],
-      "image": "starter",
+      "image": "assets/Voyager_Hero_NoGeforce_1250x.webp",
       "specs": {
         "cpu": {
           "id": "ryzen5-5600",

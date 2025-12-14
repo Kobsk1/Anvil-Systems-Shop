@@ -482,30 +482,45 @@ h1, h2, h3, h4 {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
-#build-valkyrie {
-    background: linear-gradient(135deg, #2a2a3a 0%, #4a2a3a 100%);
+.build-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
-#build-titan {
-    background: linear-gradient(135deg, #2a2a3a 0%, #2a3a4a 100%);
+.build-image:has(.placeholder-content) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+#build-valkyrie,
+#build-titan,
 #build-ember {
-    background: linear-gradient(135deg, #2a2a3a 0%, #3a2a2a 100%);
+    background: linear-gradient(135deg, #2a2a3a, #1a1a24);
 }
 
 .build-image::before {
     content: "🖥️";
     font-size: 4rem;
     opacity: 0.3;
+    display: none;
+}
+
+.build-image:has(img)::before {
+    display: none;
 }
 
 .build-overlay {
     position: absolute;
     top: 1rem;
     right: 1rem;
+    z-index: 5;
 }
 
 .build-tag {
@@ -1028,6 +1043,21 @@ h1, h2, h3, h4 {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+
+.system-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.system-hero-image:has(.placeholder-content) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .system-hero-overlay {
@@ -1430,6 +1460,20 @@ h1, h2, h3, h4 {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+
+.component-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.component-image:has(.placeholder-content) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .component-info {
@@ -1539,6 +1583,21 @@ h1, h2, h3, h4 {
     height: 120px;
     background: var(--color-dark);
     border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.cart-item-image:has(.placeholder-content) {
     display: flex;
     align-items: center;
     justify-content: center;

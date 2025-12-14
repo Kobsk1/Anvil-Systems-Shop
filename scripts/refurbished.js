@@ -13,6 +13,7 @@ async function loadRefurbished() {
         grid.innerHTML = refurbished.map(system => `
             <div class="build-card">
                 <div class="build-image" id="refurb-${system.id}">
+                    <img src="assets/Voy_Red_Hero_1250x.webp" alt="${system.name} - Refurbished" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'placeholder-content\\'><h3 style=\\'color: #ff4500;\\'>${system.name}</h3><p style=\\'color: #666;\\'>[Refurbished]</p></div><div class=\\'build-overlay\\'><span class=\\'build-tag\\'>REFURB</span></div>';">
                     <div class="build-overlay">
                         <span class="build-tag">REFURB</span>
                     </div>

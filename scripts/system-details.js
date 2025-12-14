@@ -39,12 +39,9 @@ function renderSystemDetails() {
     document.getElementById('system-tag').textContent = currentSystem.tag;
     
     const heroImage = document.getElementById('system-hero-image');
+    const imagePath = currentSystem.image || `assets/Horizon_Hero_1250x.webp`;
     heroImage.innerHTML = `
-        <div class="placeholder-content" style="padding: 4rem; text-align: center;">
-            <h2 style="color: #ff4500; font-size: 3rem; margin-bottom: 1rem;">${currentSystem.name}</h2>
-            <p style="color: #ccc; font-size: 1.2rem;">${currentSystem.description}</p>
-            <p style="color: #666; margin-top: 2rem;">[PC Hero Image Placeholder]</p>
-        </div>
+        <img src="${imagePath}" alt="${currentSystem.name} - ${currentSystem.description}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'placeholder-content\\' style=\\'padding: 4rem; text-align: center;\\'><h2 style=\\'color: #ff4500; font-size: 3rem; margin-bottom: 1rem;\\'>${currentSystem.name}</h2><p style=\\'color: #ccc; font-size: 1.2rem;\\'>${currentSystem.description}</p></div>';">
     `;
     
     // Specifications table
@@ -312,15 +309,13 @@ async function loadRelatedSystems() {
             </div>
         `).join('');
         
-        // Add placeholder images
+        // Add images
         related.forEach(system => {
             const img = document.getElementById(`related-${system.id}`);
             if (img) {
+                const imagePath = system.image || `assets/Horizon_Hero_1250x.webp`;
                 img.innerHTML = `
-                    <div class="placeholder-content">
-                        <h3 style="color: #ff4500;">${system.name}</h3>
-                        <p style="color: #666; font-size: 0.8rem;">[PC Image]</p>
-                    </div>
+                    <img src="${imagePath}" alt="${system.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'placeholder-content\\'><h3 style=\\'color: #ff4500;\\'>${system.name}</h3></div><div class=\\'build-overlay\\'><span class=\\'build-tag\\'>${system.tag}</span></div>';">
                     <div class="build-overlay">
                         <span class="build-tag">${system.tag}</span>
                     </div>

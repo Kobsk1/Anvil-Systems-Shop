@@ -67,23 +67,21 @@ document.querySelectorAll('.build-card').forEach(card => {
     });
 });
 
-// Simple image placeholder replacement (you would replace with actual images)
+// Load images for build cards on homepage
 function loadPlaceholderImages() {
-    // This is where you would load actual images
-    // For now, we'll just add some text placeholders
-    const buildImages = document.querySelectorAll('.build-image');
+    // Images are now loaded directly in HTML, but we can add fallback handling here if needed
+    const buildImages = document.querySelectorAll('.build-image:not(:has(img))');
     
-    buildImages.forEach((img, index) => {
-        const names = ['Ember Inferno', 'Forge Hardened', 'Ember Core'];
-        const desc = ['1440p Gaming', '4K/VR Creation', '1080p Performance'];
-        
-        img.innerHTML = `
-            <div class="placeholder-content">
-                <h3 style="color: #ff4500; margin-bottom: 10px;">${names[index]}</h3>
-                <p style="color: #ccc;">${desc[index]} PC</p>
-                <p style="color: #666; font-size: 0.8rem; margin-top: 10px;">[PC Image Placeholder]</p>
-            </div>
-        `;
+    buildImages.forEach((img) => {
+        // Only add placeholder if no image is present
+        if (!img.querySelector('img')) {
+            img.innerHTML = `
+                <div class="placeholder-content">
+                    <h3 style="color: #ff4500; margin-bottom: 10px;">PC Build</h3>
+                    <p style="color: #666; font-size: 0.8rem;">[Image Loading...]</p>
+                </div>
+            `;
+        }
     });
 }
 
