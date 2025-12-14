@@ -74,7 +74,7 @@ function loadPlaceholderImages() {
     const buildImages = document.querySelectorAll('.build-image');
     
     buildImages.forEach((img, index) => {
-        const names = ['VALKYRIE', 'TITAN FORGE', 'EMBER'];
+        const names = ['Ember Inferno', 'Forge Hardened', 'Ember Core'];
         const desc = ['1440p Gaming', '4K/VR Creation', '1080p Performance'];
         
         img.innerHTML = `
@@ -87,6 +87,20 @@ function loadPlaceholderImages() {
     });
 }
 
+// Set active navigation link based on current page
+function setActiveNavLink() {
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split('/').pop() || 'index.html';
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPage || (currentPage === '' && linkPath === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     loadPlaceholderImages();
@@ -95,6 +109,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearSpan = document.querySelector('#current-year');
     if(yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
+    }
+    
+    // Set active navigation link
+    setActiveNavLink();
+    
+    // Initialize cart badge if cart.js is loaded
+    if (typeof updateCartBadge === 'function') {
+        updateCartBadge();
     }
 });
 

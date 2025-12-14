@@ -1,0 +1,327 @@
+/* Configurator Page Styles */
+
+.configurator-main {
+    padding: var(--spacing-lg) 2rem;
+    background-color: var(--color-dark);
+    min-height: 60vh;
+}
+
+.configurator-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Progress Indicator */
+.progress-indicator {
+    margin-bottom: 3rem;
+}
+
+.progress-bar {
+    height: 6px;
+    background: var(--color-gray);
+    border-radius: 3px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-lava-dark), var(--color-lava));
+    border-radius: 3px;
+    transition: width 0.3s ease;
+    width: 0%;
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    position: relative;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-gray);
+    border: 2px solid rgba(255, 69, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #aaa;
+    transition: all 0.3s;
+}
+
+.progress-step.active .step-number {
+    background: var(--color-lava);
+    border-color: var(--color-lava);
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+}
+
+.progress-step.completed .step-number {
+    background: var(--color-lava-dark);
+    border-color: var(--color-lava);
+    color: white;
+}
+
+.step-label {
+    font-size: 0.85rem;
+    color: #aaa;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.progress-step.active .step-label {
+    color: var(--color-lava);
+}
+
+/* Configurator Layout */
+.configurator-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 3rem;
+}
+
+.configurator-content {
+    background: var(--color-gray);
+    padding: 3rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 69, 0, 0.1);
+    min-height: 500px;
+}
+
+.step-content {
+    margin-bottom: 2rem;
+}
+
+.step-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-lava);
+    text-transform: uppercase;
+}
+
+.step-description {
+    color: #aaa;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.component-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.component-option {
+    background: var(--color-dark);
+    border: 2px solid rgba(255, 69, 0, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.component-option:hover {
+    border-color: var(--color-lava);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.component-option.selected {
+    border-color: var(--color-lava);
+    background: rgba(255, 69, 0, 0.1);
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+}
+
+.component-option.recommended::before {
+    content: 'RECOMMENDED';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--color-lava);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.option-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-light);
+}
+
+.option-specs {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.option-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-lava);
+    font-family: var(--font-heading);
+}
+
+.step-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Summary Panel */
+.configurator-summary {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.summary-card {
+    background: var(--color-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 69, 0, 0.1);
+}
+
+.summary-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--color-lava);
+    text-transform: uppercase;
+}
+
+.summary-items {
+    margin-bottom: 2rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.summary-item {
+    padding: 1rem;
+    background: var(--color-dark);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-item-name {
+    font-weight: 600;
+    color: var(--color-light);
+    font-size: 0.9rem;
+}
+
+.summary-item-price {
+    color: var(--color-lava);
+    font-weight: 700;
+}
+
+.summary-total {
+    border-top: 2px solid rgba(255, 69, 0, 0.3);
+    padding-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-light);
+}
+
+.total-row span:last-child {
+    color: var(--color-lava);
+}
+
+.summary-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Compatibility Warnings */
+.compatibility-warnings {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(255, 69, 0, 0.1);
+    border: 1px solid var(--color-lava);
+    border-radius: 4px;
+}
+
+.warning-message {
+    color: var(--color-lava);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.warning-message:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .configurator-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .configurator-summary {
+        position: static;
+        order: -1;
+    }
+    
+    .component-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .progress-steps {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .progress-step {
+        flex: 0 0 calc(25% - 1rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .configurator-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .progress-step {
+        flex: 0 0 calc(50% - 0.5rem);
+    }
+    
+    .step-navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .step-navigation button {
+        width: 100%;
+    }
+}

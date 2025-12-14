@@ -1,0 +1,916 @@
+{
+  "categories": {
+    "cpu": {
+      "name": "Processors",
+      "icon": "microchip"
+    },
+    "gpu": {
+      "name": "Graphics Cards",
+      "icon": "fan"
+    },
+    "ram": {
+      "name": "Memory",
+      "icon": "memory"
+    },
+    "storage": {
+      "name": "Storage",
+      "icon": "hdd"
+    },
+    "cooling": {
+      "name": "Cooling",
+      "icon": "snowflake"
+    },
+    "case": {
+      "name": "Cases",
+      "icon": "cube"
+    },
+    "psu": {
+      "name": "Power Supplies",
+      "icon": "bolt"
+    },
+    "motherboard": {
+      "name": "Motherboards",
+      "icon": "microchip"
+    }
+  },
+  "components": {
+    "cpu": [
+      {
+        "id": "ryzen5-5600",
+        "name": "AMD Ryzen 5 5600",
+        "brand": "AMD",
+        "price": 149,
+        "specs": {
+          "cores": 6,
+          "threads": 12,
+          "baseClock": "3.5GHz",
+          "boostClock": "4.4GHz",
+          "socket": "AM4",
+          "tdp": "65W"
+        },
+        "anvilCertified": false,
+        "compatibility": {
+          "socket": "AM4",
+          "chipset": ["B550", "X570"]
+        }
+      },
+      {
+        "id": "ryzen5-7600",
+        "name": "AMD Ryzen 5 7600",
+        "brand": "AMD",
+        "price": 229,
+        "specs": {
+          "cores": 6,
+          "threads": 12,
+          "baseClock": "3.8GHz",
+          "boostClock": "5.1GHz",
+          "socket": "AM5",
+          "tdp": "65W"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "AM5",
+          "chipset": ["B650", "X670"]
+        }
+      },
+      {
+        "id": "ryzen7-7700x",
+        "name": "AMD Ryzen 7 7700X",
+        "brand": "AMD",
+        "price": 329,
+        "specs": {
+          "cores": 8,
+          "threads": 16,
+          "baseClock": "4.5GHz",
+          "boostClock": "5.4GHz",
+          "socket": "AM5",
+          "tdp": "105W"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "AM5",
+          "chipset": ["B650", "X670"]
+        }
+      },
+      {
+        "id": "ryzen7-7800x3d",
+        "name": "AMD Ryzen 7 7800X3D",
+        "brand": "AMD",
+        "price": 449,
+        "specs": {
+          "cores": 8,
+          "threads": 16,
+          "baseClock": "4.2GHz",
+          "boostClock": "5.0GHz",
+          "socket": "AM5",
+          "tdp": "120W"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "AM5",
+          "chipset": ["B650", "X670"]
+        }
+      },
+      {
+        "id": "ryzen9-7900x3d",
+        "name": "AMD Ryzen 9 7900X3D",
+        "brand": "AMD",
+        "price": 599,
+        "specs": {
+          "cores": 12,
+          "threads": 24,
+          "baseClock": "4.4GHz",
+          "boostClock": "5.6GHz",
+          "socket": "AM5",
+          "tdp": "120W"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "AM5",
+          "chipset": ["B650", "X670"]
+        }
+      },
+      {
+        "id": "ryzen9-7950x",
+        "name": "AMD Ryzen 9 7950X",
+        "brand": "AMD",
+        "price": 699,
+        "specs": {
+          "cores": 16,
+          "threads": 32,
+          "baseClock": "4.5GHz",
+          "boostClock": "5.7GHz",
+          "socket": "AM5",
+          "tdp": "170W"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "AM5",
+          "chipset": ["B650", "X670"]
+        }
+      },
+      {
+        "id": "i5-13600k",
+        "name": "Intel Core i5-13600K",
+        "brand": "Intel",
+        "price": 319,
+        "specs": {
+          "cores": 14,
+          "threads": 20,
+          "baseClock": "3.5GHz",
+          "boostClock": "5.1GHz",
+          "socket": "LGA1700",
+          "tdp": "125W"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "LGA1700",
+          "chipset": ["B760", "Z790"]
+        }
+      },
+      {
+        "id": "i7-13700k",
+        "name": "Intel Core i7-13700K",
+        "brand": "Intel",
+        "price": 419,
+        "specs": {
+          "cores": 16,
+          "threads": 24,
+          "baseClock": "3.4GHz",
+          "boostClock": "5.4GHz",
+          "socket": "LGA1700",
+          "tdp": "125W"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "LGA1700",
+          "chipset": ["B760", "Z790"]
+        }
+      },
+      {
+        "id": "i9-14900k",
+        "name": "Intel Core i9-14900K",
+        "brand": "Intel",
+        "price": 589,
+        "specs": {
+          "cores": 24,
+          "threads": 32,
+          "baseClock": "3.2GHz",
+          "boostClock": "6.0GHz",
+          "socket": "LGA1700",
+          "tdp": "125W"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "LGA1700",
+          "chipset": ["B760", "Z790"]
+        }
+      }
+    ],
+    "gpu": [
+      {
+        "id": "rtx4060",
+        "name": "NVIDIA RTX 4060",
+        "brand": "NVIDIA",
+        "price": 299,
+        "specs": {
+          "vram": "8GB GDDR6",
+          "boostClock": "2460MHz",
+          "powerDraw": "115W",
+          "length": "240mm"
+        },
+        "anvilCertified": false,
+        "compatibility": {
+          "psuMin": 500,
+          "slotWidth": 2
+        }
+      },
+      {
+        "id": "rtx4060ti",
+        "name": "NVIDIA RTX 4060 Ti",
+        "brand": "NVIDIA",
+        "price": 399,
+        "specs": {
+          "vram": "16GB GDDR6",
+          "boostClock": "2535MHz",
+          "powerDraw": "165W",
+          "length": "242mm"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "psuMin": 550,
+          "slotWidth": 2
+        }
+      },
+      {
+        "id": "rtx4070",
+        "name": "NVIDIA RTX 4070",
+        "brand": "NVIDIA",
+        "price": 599,
+        "specs": {
+          "vram": "12GB GDDR6X",
+          "boostClock": "2475MHz",
+          "powerDraw": "200W",
+          "length": "244mm"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "psuMin": 650,
+          "slotWidth": 2
+        }
+      },
+      {
+        "id": "rtx4070ti-super",
+        "name": "NVIDIA RTX 4070 Ti SUPER",
+        "brand": "NVIDIA",
+        "price": 799,
+        "specs": {
+          "vram": "16GB GDDR6X",
+          "boostClock": "2610MHz",
+          "powerDraw": "285W",
+          "length": "305mm"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "psuMin": 750,
+          "slotWidth": 3
+        }
+      },
+      {
+        "id": "rtx4080-super",
+        "name": "NVIDIA RTX 4080 SUPER",
+        "brand": "NVIDIA",
+        "price": 999,
+        "specs": {
+          "vram": "16GB GDDR6X",
+          "boostClock": "2550MHz",
+          "powerDraw": "320W",
+          "length": "310mm"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "psuMin": 850,
+          "slotWidth": 3
+        }
+      },
+      {
+        "id": "rtx4090",
+        "name": "NVIDIA RTX 4090",
+        "brand": "NVIDIA",
+        "price": 1599,
+        "specs": {
+          "vram": "24GB GDDR6X",
+          "boostClock": "2520MHz",
+          "powerDraw": "450W",
+          "length": "304mm"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "psuMin": 1000,
+          "slotWidth": 3
+        }
+      }
+    ],
+    "ram": [
+      {
+        "id": "ddr4-16gb-3200",
+        "name": "16GB DDR4 3200MHz",
+        "brand": "Corsair",
+        "price": 60,
+        "specs": {
+          "capacity": "16GB",
+          "speed": "3200MHz",
+          "type": "DDR4",
+          "latency": "CL16",
+          "modules": 2
+        },
+        "anvilCertified": false,
+        "compatibility": {
+          "type": "DDR4",
+          "formFactor": "DIMM"
+        }
+      },
+      {
+        "id": "ddr4-32gb-3200",
+        "name": "32GB DDR4 3200MHz",
+        "brand": "Corsair",
+        "price": 110,
+        "specs": {
+          "capacity": "32GB",
+          "speed": "3200MHz",
+          "type": "DDR4",
+          "latency": "CL16",
+          "modules": 2
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "type": "DDR4",
+          "formFactor": "DIMM"
+        }
+      },
+      {
+        "id": "ddr5-16gb-5600",
+        "name": "16GB DDR5 5600MHz",
+        "brand": "Corsair",
+        "price": 80,
+        "specs": {
+          "capacity": "16GB",
+          "speed": "5600MHz",
+          "type": "DDR5",
+          "latency": "CL36",
+          "modules": 2
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "type": "DDR5",
+          "formFactor": "DIMM"
+        }
+      },
+      {
+        "id": "ddr5-32gb-6000",
+        "name": "32GB DDR5 6000MHz",
+        "brand": "Corsair",
+        "price": 150,
+        "specs": {
+          "capacity": "32GB",
+          "speed": "6000MHz",
+          "type": "DDR5",
+          "latency": "CL30",
+          "modules": 2
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "type": "DDR5",
+          "formFactor": "DIMM"
+        }
+      },
+      {
+        "id": "ddr5-64gb-6000",
+        "name": "64GB DDR5 6000MHz",
+        "brand": "Corsair",
+        "price": 300,
+        "specs": {
+          "capacity": "64GB",
+          "speed": "6000MHz",
+          "type": "DDR5",
+          "latency": "CL30",
+          "modules": 2
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "type": "DDR5",
+          "formFactor": "DIMM"
+        }
+      },
+      {
+        "id": "ddr5-64gb-6400",
+        "name": "64GB DDR5 6400MHz",
+        "brand": "Corsair",
+        "price": 350,
+        "specs": {
+          "capacity": "64GB",
+          "speed": "6400MHz",
+          "type": "DDR5",
+          "latency": "CL32",
+          "modules": 2
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "type": "DDR5",
+          "formFactor": "DIMM"
+        }
+      }
+    ],
+    "storage": [
+      {
+        "id": "nvme-1tb-gen3",
+        "name": "1TB NVMe Gen3 SSD",
+        "brand": "Samsung",
+        "price": 70,
+        "specs": {
+          "capacity": "1TB",
+          "type": "NVMe",
+          "interface": "PCIe 3.0",
+          "readSpeed": "3500MB/s",
+          "writeSpeed": "3000MB/s",
+          "formFactor": "M.2"
+        },
+        "anvilCertified": false,
+        "compatibility": {
+          "interface": "M.2",
+          "pcie": "3.0"
+        }
+      },
+      {
+        "id": "nvme-1tb-gen4",
+        "name": "1TB NVMe Gen4 SSD",
+        "brand": "Samsung",
+        "price": 100,
+        "specs": {
+          "capacity": "1TB",
+          "type": "NVMe",
+          "interface": "PCIe 4.0",
+          "readSpeed": "7000MB/s",
+          "writeSpeed": "5000MB/s",
+          "formFactor": "M.2"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "interface": "M.2",
+          "pcie": "4.0"
+        }
+      },
+      {
+        "id": "nvme-2tb-gen4",
+        "name": "2TB NVMe Gen4 SSD",
+        "brand": "Samsung",
+        "price": 200,
+        "specs": {
+          "capacity": "2TB",
+          "type": "NVMe",
+          "interface": "PCIe 4.0",
+          "readSpeed": "7000MB/s",
+          "writeSpeed": "5000MB/s",
+          "formFactor": "M.2"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "interface": "M.2",
+          "pcie": "4.0"
+        }
+      },
+      {
+        "id": "nvme-4tb-gen4",
+        "name": "4TB NVMe Gen4 SSD",
+        "brand": "Samsung",
+        "price": 400,
+        "specs": {
+          "capacity": "4TB",
+          "type": "NVMe",
+          "interface": "PCIe 4.0",
+          "readSpeed": "7000MB/s",
+          "writeSpeed": "5000MB/s",
+          "formFactor": "M.2"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "interface": "M.2",
+          "pcie": "4.0"
+        }
+      },
+      {
+        "id": "sata-2tb-ssd",
+        "name": "2TB SATA SSD",
+        "brand": "Samsung",
+        "price": 150,
+        "specs": {
+          "capacity": "2TB",
+          "type": "SATA",
+          "interface": "SATA III",
+          "readSpeed": "560MB/s",
+          "writeSpeed": "530MB/s",
+          "formFactor": "2.5\""
+        },
+        "anvilCertified": false,
+        "compatibility": {
+          "interface": "SATA",
+          "formFactor": "2.5\""
+        }
+      }
+    ],
+    "cooling": [
+      {
+        "id": "air-cooler-basic",
+        "name": "Basic Air Cooler",
+        "brand": "Cooler Master",
+        "price": 30,
+        "specs": {
+          "type": "Air",
+          "towerHeight": "120mm",
+          "tdp": "100W",
+          "noise": "25dB"
+        },
+        "anvilCertified": false,
+        "compatibility": {
+          "sockets": ["AM4", "AM5", "LGA1700"],
+          "caseClearance": 150
+        }
+      },
+      {
+        "id": "air-cooler-tower",
+        "name": "Tower Air Cooler",
+        "brand": "Noctua",
+        "price": 50,
+        "specs": {
+          "type": "Air",
+          "towerHeight": "165mm",
+          "tdp": "200W",
+          "noise": "22dB"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "sockets": ["AM4", "AM5", "LGA1700"],
+          "caseClearance": 170
+        }
+      },
+      {
+        "id": "aio-240mm",
+        "name": "240mm AIO Liquid Cooler",
+        "brand": "Corsair",
+        "price": 120,
+        "specs": {
+          "type": "AIO",
+          "radiatorSize": "240mm",
+          "tdp": "250W",
+          "noise": "20dB"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "sockets": ["AM4", "AM5", "LGA1700"],
+          "radiatorMount": "240mm"
+        }
+      },
+      {
+        "id": "aio-280mm",
+        "name": "280mm AIO Liquid Cooler",
+        "brand": "Corsair",
+        "price": 150,
+        "specs": {
+          "type": "AIO",
+          "radiatorSize": "280mm",
+          "tdp": "300W",
+          "noise": "18dB"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "sockets": ["AM4", "AM5", "LGA1700"],
+          "radiatorMount": "280mm"
+        }
+      },
+      {
+        "id": "aio-360mm",
+        "name": "360mm AIO Liquid Cooler",
+        "brand": "Corsair",
+        "price": 180,
+        "specs": {
+          "type": "AIO",
+          "radiatorSize": "360mm",
+          "tdp": "350W",
+          "noise": "16dB"
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "sockets": ["AM4", "AM5", "LGA1700"],
+          "radiatorMount": "360mm"
+        }
+      }
+    ],
+    "case": [
+      {
+        "id": "mid-tower-budget",
+        "name": "Mid-Tower Budget Case",
+        "brand": "Fractal Design",
+        "price": 60,
+        "specs": {
+          "formFactor": "Mid-Tower",
+          "motherboardSupport": ["mATX", "ATX"],
+          "maxGpuLength": "330mm",
+          "maxCoolerHeight": "165mm",
+          "radiatorSupport": ["240mm"]
+        },
+        "anvilCertified": false,
+        "compatibility": {
+          "formFactor": ["mATX", "ATX"],
+          "gpuMaxLength": 330,
+          "coolerMaxHeight": 165
+        }
+      },
+      {
+        "id": "mid-tower-basic",
+        "name": "Mid-Tower Case",
+        "brand": "Fractal Design",
+        "price": 80,
+        "specs": {
+          "formFactor": "Mid-Tower",
+          "motherboardSupport": ["mATX", "ATX"],
+          "maxGpuLength": "350mm",
+          "maxCoolerHeight": "170mm",
+          "radiatorSupport": ["240mm", "280mm"]
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "formFactor": ["mATX", "ATX"],
+          "gpuMaxLength": 350,
+          "coolerMaxHeight": 170
+        }
+      },
+      {
+        "id": "mid-tower-rgb",
+        "name": "Mid-Tower RGB Case",
+        "brand": "Lian Li",
+        "price": 150,
+        "specs": {
+          "formFactor": "Mid-Tower",
+          "motherboardSupport": ["mATX", "ATX"],
+          "maxGpuLength": "380mm",
+          "maxCoolerHeight": "180mm",
+          "radiatorSupport": ["240mm", "280mm", "360mm"]
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "formFactor": ["mATX", "ATX"],
+          "gpuMaxLength": 380,
+          "coolerMaxHeight": 180
+        }
+      },
+      {
+        "id": "mid-tower-premium",
+        "name": "Mid-Tower Premium Case",
+        "brand": "Lian Li",
+        "price": 200,
+        "specs": {
+          "formFactor": "Mid-Tower",
+          "motherboardSupport": ["mATX", "ATX"],
+          "maxGpuLength": "400mm",
+          "maxCoolerHeight": "185mm",
+          "radiatorSupport": ["240mm", "280mm", "360mm"]
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "formFactor": ["mATX", "ATX"],
+          "gpuMaxLength": 400,
+          "coolerMaxHeight": 185
+        }
+      },
+      {
+        "id": "full-tower-premium",
+        "name": "Full-Tower Premium Case",
+        "brand": "Corsair",
+        "price": 250,
+        "specs": {
+          "formFactor": "Full-Tower",
+          "motherboardSupport": ["mATX", "ATX", "EATX"],
+          "maxGpuLength": "450mm",
+          "maxCoolerHeight": "200mm",
+          "radiatorSupport": ["240mm", "280mm", "360mm", "420mm"]
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "formFactor": ["mATX", "ATX", "EATX"],
+          "gpuMaxLength": 450,
+          "coolerMaxHeight": 200
+        }
+      }
+    ],
+    "psu": [
+      {
+        "id": "psu-600w-bronze",
+        "name": "600W 80+ Bronze PSU",
+        "brand": "Corsair",
+        "price": 60,
+        "specs": {
+          "wattage": 600,
+          "efficiency": "80+ Bronze",
+          "modular": false,
+          "pcieConnectors": 2
+        },
+        "anvilCertified": false,
+        "compatibility": {
+          "wattage": 600
+        }
+      },
+      {
+        "id": "psu-650w-bronze",
+        "name": "650W 80+ Bronze PSU",
+        "brand": "Corsair",
+        "price": 70,
+        "specs": {
+          "wattage": 650,
+          "efficiency": "80+ Bronze",
+          "modular": false,
+          "pcieConnectors": 2
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "wattage": 650
+        }
+      },
+      {
+        "id": "psu-850w-gold",
+        "name": "850W 80+ Gold PSU",
+        "brand": "Corsair",
+        "price": 130,
+        "specs": {
+          "wattage": 850,
+          "efficiency": "80+ Gold",
+          "modular": true,
+          "pcieConnectors": 4
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "wattage": 850
+        }
+      },
+      {
+        "id": "psu-1000w-gold",
+        "name": "1000W 80+ Gold PSU",
+        "brand": "Corsair",
+        "price": 180,
+        "specs": {
+          "wattage": 1000,
+          "efficiency": "80+ Gold",
+          "modular": true,
+          "pcieConnectors": 4
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "wattage": 1000
+        }
+      },
+      {
+        "id": "psu-1200w-platinum",
+        "name": "1200W 80+ Platinum PSU",
+        "brand": "Corsair",
+        "price": 250,
+        "specs": {
+          "wattage": 1200,
+          "efficiency": "80+ Platinum",
+          "modular": true,
+          "pcieConnectors": 6
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "wattage": 1200
+        }
+      }
+    ],
+    "motherboard": [
+      {
+        "id": "b550-basic",
+        "name": "B550 Basic Motherboard",
+        "brand": "ASUS",
+        "price": 120,
+        "specs": {
+          "chipset": "B550",
+          "socket": "AM4",
+          "formFactor": "ATX",
+          "ramSlots": 4,
+          "ramType": "DDR4",
+          "m2Slots": 2,
+          "pcieSlots": 2
+        },
+        "anvilCertified": false,
+        "compatibility": {
+          "socket": "AM4",
+          "formFactor": "ATX",
+          "ramType": "DDR4"
+        }
+      },
+      {
+        "id": "b650-basic",
+        "name": "B650 Basic Motherboard",
+        "brand": "ASUS",
+        "price": 180,
+        "specs": {
+          "chipset": "B650",
+          "socket": "AM5",
+          "formFactor": "ATX",
+          "ramSlots": 4,
+          "ramType": "DDR5",
+          "m2Slots": 2,
+          "pcieSlots": 2
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "AM5",
+          "formFactor": "ATX",
+          "ramType": "DDR5"
+        }
+      },
+      {
+        "id": "b650-am5",
+        "name": "B650 AM5 Motherboard",
+        "brand": "ASUS",
+        "price": 201,
+        "specs": {
+          "chipset": "B650",
+          "socket": "AM5",
+          "formFactor": "ATX",
+          "ramSlots": 4,
+          "ramType": "DDR5",
+          "m2Slots": 3,
+          "pcieSlots": 3
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "AM5",
+          "formFactor": "ATX",
+          "ramType": "DDR5"
+        }
+      },
+      {
+        "id": "x670-premium",
+        "name": "X670 Premium Motherboard",
+        "brand": "ASUS",
+        "price": 271,
+        "specs": {
+          "chipset": "X670",
+          "socket": "AM5",
+          "formFactor": "ATX",
+          "ramSlots": 4,
+          "ramType": "DDR5",
+          "m2Slots": 4,
+          "pcieSlots": 4
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "AM5",
+          "formFactor": "ATX",
+          "ramType": "DDR5"
+        }
+      },
+      {
+        "id": "b760-basic",
+        "name": "B760 Basic Motherboard",
+        "brand": "ASUS",
+        "price": 160,
+        "specs": {
+          "chipset": "B760",
+          "socket": "LGA1700",
+          "formFactor": "ATX",
+          "ramSlots": 4,
+          "ramType": "DDR5",
+          "m2Slots": 2,
+          "pcieSlots": 2
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "LGA1700",
+          "formFactor": "ATX",
+          "ramType": "DDR5"
+        }
+      },
+      {
+        "id": "z790-premium",
+        "name": "Z790 Premium Motherboard",
+        "brand": "ASUS",
+        "price": 381,
+        "specs": {
+          "chipset": "Z790",
+          "socket": "LGA1700",
+          "formFactor": "ATX",
+          "ramSlots": 4,
+          "ramType": "DDR5",
+          "m2Slots": 5,
+          "pcieSlots": 4
+        },
+        "anvilCertified": true,
+        "compatibility": {
+          "socket": "LGA1700",
+          "formFactor": "ATX",
+          "ramType": "DDR5"
+        }
+      }
+    ]
+  }
+}

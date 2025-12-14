@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Details | Anvil Systems</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body class="page-system-details">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-fire"></i>
+                    <span class="logo-text">ANVIL<span class="logo-accent">SYSTEMS</span></span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="systems.html" class="nav-link">Builds</a></li>
+                <li><a href="components.html" class="nav-link">Components</a></li>
+                <li><a href="mail-in.html" class="nav-link">Mail-In</a></li>
+                <li><a href="refurbished.html" class="nav-link">Outlet</a></li>
+                <li><a href="configurator.html" class="nav-link">Assembly</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="configurator.html" class="nav-link btn-nav">Build Now</a></li>
+                <li><a href="cart.html" class="nav-link cart-link"><i class="fas fa-shopping-cart"></i></a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Image Section -->
+    <section class="system-hero">
+        <div class="system-hero-image" id="system-hero-image">
+            <!-- Image placeholder -->
+        </div>
+        <div class="system-hero-overlay">
+            <h1 class="system-hero-title" id="system-name">Loading...</h1>
+            <p class="system-hero-tag" id="system-tag"></p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="system-details-main">
+        <div class="system-details-container">
+            <!-- Left Column: Specs and Info -->
+            <div class="system-details-content">
+                <!-- Specifications Table -->
+                <section class="specs-section">
+                    <h2 class="section-title">SPECIFICATIONS</h2>
+                    <table class="specs-table">
+                        <tbody id="specs-table-body">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Performance Benchmarks -->
+                <section class="benchmarks-section">
+                    <h2 class="section-title">PERFORMANCE <span class="section-accent">BENCHMARKS</span></h2>
+                    <div class="benchmarks-grid" id="benchmarks-grid">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    <a href="benchmark.html" class="btn-secondary">View Full Benchmark Tool <i class="fas fa-arrow-right"></i></a>
+                </section>
+
+                <!-- Related Systems -->
+                <section class="related-systems">
+                    <h2 class="section-title">RELATED <span class="section-accent">SYSTEMS</span></h2>
+                    <div class="builds-grid" id="related-systems-grid">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Customization and Purchase -->
+            <aside class="customization-panel">
+                <div class="customization-card">
+                    <h3 class="customization-title">Customize Your Build</h3>
+                    
+                    <!-- Customization Options -->
+                    <div class="customization-options" id="customization-options">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Compatibility Warnings -->
+                    <div class="compatibility-warnings" id="compatibility-warnings" style="display: none;">
+                        <!-- Warnings will appear here -->
+                    </div>
+
+                    <!-- Price Summary -->
+                    <div class="price-summary">
+                        <div class="price-row">
+                            <span>Base Price:</span>
+                            <span id="base-price">$0</span>
+                        </div>
+                        <div class="price-row" id="upgrades-row" style="display: none;">
+                            <span>Upgrades:</span>
+                            <span id="upgrades-price">+$0</span>
+                        </div>
+                        <div class="price-row price-total">
+                            <span>Total:</span>
+                            <span id="total-price">$0</span>
+                        </div>
+                    </div>
+
+                    <!-- Quantity Selector -->
+                    <div class="quantity-selector">
+                        <label>Quantity:</label>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" id="quantity-decrease">-</button>
+                            <input type="number" id="quantity-input" value="1" min="1" max="10">
+                            <button class="quantity-btn" id="quantity-increase">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="btn-primary btn-full" id="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="btn-secondary btn-full" id="share-build">
+                            <i class="fas fa-share-alt"></i> Share Build
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo footer-logo">
+                    <a href="index.html">
+                        <i class="fas fa-fire"></i>
+                        <span class="logo-text">ANVIL<span class="logo-accent">SYSTEMS</span></span>
+                    </a>
+                </div>
+                <p class="footer-about">Forging the world's finest custom PC systems since 2025. Every build is a masterpiece.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-title">Services</h4>
+                <ul class="footer-links">
+                    <li><a href="configurator.html">Custom PC Building</a></li>
+                    <li><a href="#">Mail-In Assembly</a></li>
+                    <li><a href="#">Performance Tuning</a></li>
+                    <li><a href="#">Enterprise Solutions</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-title">Support</h4>
+                <ul class="footer-links">
+                    <li><a href="warranty.html">Warranty & RMA</a></li>
+                    <li><a href="status.html">Build Status</a></li>
+                    <li><a href="faq.html">Knowledge Base</a></li>
+                    <li><a href="contact.html">Contact Support</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-title">Contact</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Forge Street, Tech Valley</li>
+                    <li><i class="fas fa-phone"></i> (555) 123-ANVIL</li>
+                    <li><i class="fas fa-envelope"></i> build@anvilsystems.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Anvil Systems. All rights reserved. Forged with <i class="fas fa-fire" style="color: #ff4500;"></i> and precision.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/system-details.js"></script>
+</body>
+</html>

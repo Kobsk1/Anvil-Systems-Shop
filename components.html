@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components Shop | Anvil Systems</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body class="page-components">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-fire"></i>
+                    <span class="logo-text">ANVIL<span class="logo-accent">SYSTEMS</span></span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="systems.html" class="nav-link">Builds</a></li>
+                <li><a href="components.html" class="nav-link active">Components</a></li>
+                <li><a href="mail-in.html" class="nav-link">Mail-In</a></li>
+                <li><a href="refurbished.html" class="nav-link">Outlet</a></li>
+                <li><a href="configurator.html" class="nav-link">Assembly</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="configurator.html" class="nav-link btn-nav">Build Now</a></li>
+                <li><a href="cart.html" class="nav-link cart-link"><i class="fas fa-shopping-cart"></i></a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1 class="page-title">COMPONENT <span class="section-accent">SHOP</span></h1>
+            <p class="page-subtitle">Browse our selection of premium PC components, hand-selected for performance and reliability</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="components-main">
+        <div class="components-container">
+            <!-- Category Navigation -->
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">All Components</button>
+                <button class="category-tab" data-category="cpu"><i class="fas fa-microchip"></i> CPU</button>
+                <button class="category-tab" data-category="gpu"><i class="fas fa-fan"></i> GPU</button>
+                <button class="category-tab" data-category="ram"><i class="fas fa-memory"></i> RAM</button>
+                <button class="category-tab" data-category="storage"><i class="fas fa-hdd"></i> Storage</button>
+                <button class="category-tab" data-category="cooling"><i class="fas fa-snowflake"></i> Cooling</button>
+                <button class="category-tab" data-category="case"><i class="fas fa-cube"></i> Cases</button>
+                <button class="category-tab" data-category="psu"><i class="fas fa-bolt"></i> PSU</button>
+                <button class="category-tab" data-category="motherboard"><i class="fas fa-microchip"></i> Motherboard</button>
+            </div>
+
+            <div class="components-layout">
+                <!-- Filter Sidebar -->
+                <aside class="filter-sidebar">
+                    <h3 class="filter-title">Filters</h3>
+                    
+                    <!-- Brand Filter -->
+                    <div class="filter-group">
+                        <label class="filter-label">Brand</label>
+                        <div class="filter-checkboxes" id="brand-filters">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div class="filter-group">
+                        <label class="filter-label">Price Range</label>
+                        <div class="price-range">
+                            <input type="range" id="comp-price-min" min="0" max="2000" value="0" step="50">
+                            <input type="range" id="comp-price-max" min="0" max="2000" value="2000" step="50">
+                            <div class="price-display">
+                                <span>$<span id="comp-price-min-display">0</span></span>
+                                <span>$<span id="comp-price-max-display">2000</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Anvil Certified Only -->
+                    <div class="filter-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="anvil-certified-only">
+                            <span>Anvil Certified Only</span>
+                        </label>
+                    </div>
+
+                    <button class="btn-secondary btn-filter-clear" id="clear-comp-filters">Clear Filters</button>
+                </aside>
+
+                <!-- Components Grid -->
+                <div class="components-content">
+                    <div class="sort-bar">
+                        <span class="results-count" id="comp-results-count">Loading...</span>
+                        <div class="sort-controls">
+                            <label for="comp-sort-select">Sort by:</label>
+                            <select id="comp-sort-select" class="sort-select">
+                                <option value="name">Name</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="brand">Brand</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="components-grid" id="components-grid">
+                        <!-- Components will be loaded here -->
+                    </div>
+
+                    <div class="no-results" id="comp-no-results" style="display: none;">
+                        <i class="fas fa-search"></i>
+                        <h3>No components found</h3>
+                        <p>Try adjusting your filters to see more results.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo footer-logo">
+                    <a href="index.html">
+                        <i class="fas fa-fire"></i>
+                        <span class="logo-text">ANVIL<span class="logo-accent">SYSTEMS</span></span>
+                    </a>
+                </div>
+                <p class="footer-about">Forging the world's finest custom PC systems since 2025. Every build is a masterpiece.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-title">Services</h4>
+                <ul class="footer-links">
+                    <li><a href="configurator.html">Custom PC Building</a></li>
+                    <li><a href="#">Mail-In Assembly</a></li>
+                    <li><a href="#">Performance Tuning</a></li>
+                    <li><a href="#">Enterprise Solutions</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-title">Support</h4>
+                <ul class="footer-links">
+                    <li><a href="warranty.html">Warranty & RMA</a></li>
+                    <li><a href="status.html">Build Status</a></li>
+                    <li><a href="faq.html">Knowledge Base</a></li>
+                    <li><a href="contact.html">Contact Support</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-title">Contact</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Forge Street, Tech Valley</li>
+                    <li><i class="fas fa-phone"></i> (555) 123-ANVIL</li>
+                    <li><i class="fas fa-envelope"></i> build@anvilsystems.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Anvil Systems. All rights reserved. Forged with <i class="fas fa-fire" style="color: #ff4500;"></i> and precision.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/components.js"></script>
+</body>
+</html>

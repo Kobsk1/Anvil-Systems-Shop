@@ -1,0 +1,283 @@
+/* Benchmark Tool Styles */
+
+.benchmark-main {
+    padding: var(--spacing-lg) 2rem;
+    background-color: var(--color-dark);
+    min-height: 60vh;
+}
+
+.benchmark-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.benchmark-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 69, 0, 0.1);
+}
+
+.benchmark-tab {
+    padding: 1rem 2rem;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #aaa;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: var(--font-body);
+    font-size: 1rem;
+}
+
+.benchmark-tab:hover {
+    color: var(--color-lava);
+}
+
+.benchmark-tab.active {
+    color: var(--color-lava);
+    border-bottom-color: var(--color-lava);
+}
+
+.benchmark-builds {
+    background: var(--color-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 69, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.benchmark-build {
+    display: none;
+}
+
+.benchmark-build.active {
+    display: block;
+}
+
+.build-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--color-lava);
+    text-transform: uppercase;
+}
+
+.component-selectors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.selector-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.selector-group label {
+    font-weight: 600;
+    color: var(--color-light);
+    font-size: 0.9rem;
+}
+
+.component-select {
+    padding: 0.8rem;
+    background: var(--color-dark);
+    border: 1px solid rgba(255, 69, 0, 0.2);
+    border-radius: 4px;
+    color: var(--color-light);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.component-select:focus {
+    outline: none;
+    border-color: var(--color-lava);
+}
+
+.benchmark-results {
+    background: var(--color-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 69, 0, 0.1);
+}
+
+.results-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--color-lava);
+    text-transform: uppercase;
+}
+
+.results-section {
+    margin-bottom: 3rem;
+}
+
+.results-section:last-child {
+    margin-bottom: 0;
+}
+
+.results-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-light);
+}
+
+.performance-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.performance-build {
+    background: var(--color-dark);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 69, 0, 0.2);
+}
+
+.build-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--color-lava);
+    text-transform: uppercase;
+}
+
+.score-value {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-lava);
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+}
+
+.performance-bar {
+    height: 30px;
+    background: var(--color-gray);
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.performance-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-lava-dark), var(--color-lava));
+    border-radius: 15px;
+    transition: width 0.5s ease;
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+}
+
+.tier-label {
+    text-align: center;
+    font-weight: 700;
+    color: var(--color-lava);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.benchmark-scores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.benchmark-score-card {
+    background: var(--color-dark);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 69, 0, 0.2);
+}
+
+.benchmark-score-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--color-lava);
+    text-transform: uppercase;
+}
+
+.score-comparison {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.score-item {
+    display: flex;
+    justify-content: space-between;
+    color: #ccc;
+}
+
+.score-item span:last-child {
+    font-weight: 700;
+    color: var(--color-lava);
+    font-size: 1.1rem;
+}
+
+.fps-table {
+    overflow-x: auto;
+}
+
+.fps-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-dark);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.fps-table thead {
+    background: var(--color-lava-dark);
+}
+
+.fps-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.fps-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #ccc;
+}
+
+.fps-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.fps-table td:first-child {
+    font-weight: 600;
+    color: var(--color-light);
+}
+
+.fps-table td:last-child,
+.fps-table td:nth-last-child(2) {
+    font-weight: 700;
+    color: var(--color-lava);
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .component-selectors {
+        grid-template-columns: 1fr;
+    }
+    
+    .performance-comparison {
+        grid-template-columns: 1fr;
+    }
+    
+    .benchmark-scores-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .fps-table {
+        font-size: 0.9rem;
+    }
+}

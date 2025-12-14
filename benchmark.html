@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Benchmark Tool | Anvil Systems</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/benchmark.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body class="page-benchmark">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-fire"></i>
+                    <span class="logo-text">ANVIL<span class="logo-accent">SYSTEMS</span></span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="systems.html" class="nav-link">Builds</a></li>
+                <li><a href="components.html" class="nav-link">Components</a></li>
+                <li><a href="mail-in.html" class="nav-link">Mail-In</a></li>
+                <li><a href="refurbished.html" class="nav-link">Outlet</a></li>
+                <li><a href="configurator.html" class="nav-link">Assembly</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="configurator.html" class="nav-link btn-nav">Build Now</a></li>
+                <li><a href="cart.html" class="nav-link cart-link"><i class="fas fa-shopping-cart"></i></a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1 class="page-title">PERFORMANCE <span class="section-accent">BENCHMARK</span></h1>
+            <p class="page-subtitle">Calculate and compare PC build performance with our advanced benchmarking tool</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="benchmark-main">
+        <div class="benchmark-container">
+            <!-- Build Selection Tabs -->
+            <div class="benchmark-tabs">
+                <button class="benchmark-tab active" data-build="build1">Build 1</button>
+                <button class="benchmark-tab" data-build="build2">Build 2 (Compare)</button>
+            </div>
+
+            <!-- Build Configuration -->
+            <div class="benchmark-builds">
+                <!-- Build 1 -->
+                <div class="benchmark-build active" id="build1-panel">
+                    <h2 class="build-title">Build 1</h2>
+                    <div class="component-selectors">
+                        <div class="selector-group">
+                            <label>CPU</label>
+                            <select class="component-select" data-category="cpu" data-build="build1">
+                                <option value="">Select CPU</option>
+                            </select>
+                        </div>
+                        <div class="selector-group">
+                            <label>GPU</label>
+                            <select class="component-select" data-category="gpu" data-build="build1">
+                                <option value="">Select GPU</option>
+                            </select>
+                        </div>
+                        <div class="selector-group">
+                            <label>RAM</label>
+                            <select class="component-select" data-category="ram" data-build="build1">
+                                <option value="">Select RAM</option>
+                            </select>
+                        </div>
+                        <div class="selector-group">
+                            <label>Storage</label>
+                            <select class="component-select" data-category="storage" data-build="build1">
+                                <option value="">Select Storage</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Build 2 -->
+                <div class="benchmark-build" id="build2-panel" style="display: none;">
+                    <h2 class="build-title">Build 2</h2>
+                    <div class="component-selectors">
+                        <div class="selector-group">
+                            <label>CPU</label>
+                            <select class="component-select" data-category="cpu" data-build="build2">
+                                <option value="">Select CPU</option>
+                            </select>
+                        </div>
+                        <div class="selector-group">
+                            <label>GPU</label>
+                            <select class="component-select" data-category="gpu" data-build="build2">
+                                <option value="">Select GPU</option>
+                            </select>
+                        </div>
+                        <div class="selector-group">
+                            <label>RAM</label>
+                            <select class="component-select" data-category="ram" data-build="build2">
+                                <option value="">Select RAM</option>
+                            </select>
+                        </div>
+                        <div class="selector-group">
+                            <label>Storage</label>
+                            <select class="component-select" data-category="storage" data-build="build2">
+                                <option value="">Select Storage</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="benchmark-results" id="benchmark-results" style="display: none;">
+                <h2 class="results-title">Performance Results</h2>
+                
+                <!-- Performance Score -->
+                <div class="results-section">
+                    <h3>Overall Performance Score</h3>
+                    <div class="performance-comparison">
+                        <div class="performance-build" id="build1-score">
+                            <div class="build-label">Build 1</div>
+                            <div class="score-value" id="build1-score-value">0</div>
+                            <div class="performance-bar">
+                                <div class="performance-fill" id="build1-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="tier-label" id="build1-tier">-</div>
+                        </div>
+                        <div class="performance-build" id="build2-score" style="display: none;">
+                            <div class="build-label">Build 2</div>
+                            <div class="score-value" id="build2-score-value">0</div>
+                            <div class="performance-bar">
+                                <div class="performance-fill" id="build2-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="tier-label" id="build2-tier">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benchmark Scores -->
+                <div class="results-section">
+                    <h3>Benchmark Scores</h3>
+                    <div class="benchmark-scores-grid">
+                        <div class="benchmark-score-card">
+                            <h4>Cinebench R23</h4>
+                            <div class="score-comparison">
+                                <div class="score-item">
+                                    <span>Build 1:</span>
+                                    <span id="build1-cinebench">-</span>
+                                </div>
+                                <div class="score-item" id="build2-cinebench-item" style="display: none;">
+                                    <span>Build 2:</span>
+                                    <span id="build2-cinebench">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="benchmark-score-card">
+                            <h4>3DMark</h4>
+                            <div class="score-comparison">
+                                <div class="score-item">
+                                    <span>Build 1:</span>
+                                    <span id="build1-3dmark">-</span>
+                                </div>
+                                <div class="score-item" id="build2-3dmark-item" style="display: none;">
+                                    <span>Build 2:</span>
+                                    <span id="build2-3dmark">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FPS Estimates -->
+                <div class="results-section">
+                    <h3>Estimated FPS (Gaming Performance)</h3>
+                    <div class="fps-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Game</th>
+                                    <th>Resolution</th>
+                                    <th>Build 1</th>
+                                    <th id="fps-build2-header" style="display: none;">Build 2</th>
+                                </tr>
+                            </thead>
+                            <tbody id="fps-tbody">
+                                <!-- FPS data will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo footer-logo">
+                    <a href="index.html">
+                        <i class="fas fa-fire"></i>
+                        <span class="logo-text">ANVIL<span class="logo-accent">SYSTEMS</span></span>
+                    </a>
+                </div>
+                <p class="footer-about">Forging the world's finest custom PC systems since 2025. Every build is a masterpiece.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-title">Services</h4>
+                <ul class="footer-links">
+                    <li><a href="configurator.html">Custom PC Building</a></li>
+                    <li><a href="#">Mail-In Assembly</a></li>
+                    <li><a href="#">Performance Tuning</a></li>
+                    <li><a href="#">Enterprise Solutions</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-title">Support</h4>
+                <ul class="footer-links">
+                    <li><a href="warranty.html">Warranty & RMA</a></li>
+                    <li><a href="status.html">Build Status</a></li>
+                    <li><a href="faq.html">Knowledge Base</a></li>
+                    <li><a href="contact.html">Contact Support</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-title">Contact</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Forge Street, Tech Valley</li>
+                    <li><i class="fas fa-phone"></i> (555) 123-ANVIL</li>
+                    <li><i class="fas fa-envelope"></i> build@anvilsystems.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Anvil Systems. All rights reserved. Forged with <i class="fas fa-fire" style="color: #ff4500;"></i> and precision.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/benchmark.js"></script>
+</body>
+</html>
